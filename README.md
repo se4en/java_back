@@ -1,1 +1,4 @@
-# java_back
+## Часть 1. 
+
+Схема базы данных:
+![ER-diagram](db/ER.png)
