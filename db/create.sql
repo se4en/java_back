@@ -1,0 +1,1 @@
+CREATE DATABASE Salary_statement WITH ENCODING 'UTF8';
