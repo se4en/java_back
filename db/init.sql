@@ -18,7 +18,7 @@ CREATE TABLE projects (
     title VARCHAR NOT NULL,
     description TEXT,
     start_date TIMESTAMP NOT NULL,
-    ens_date TIMESTAMP,
+    end_date TIMESTAMP,
     status VARCHAR NOT NULL
 );
 
@@ -37,5 +37,5 @@ CREATE TABLE roles (
     role VARCHAR NOT NULL,
     description TEXT, 
     start_date TIMESTAMP NOT NULL,
-    ens_date TIMESTAMP
+    end_date TIMESTAMP
 );
