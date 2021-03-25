@@ -2,6 +2,7 @@ package entities;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.Objects;
 
 @Entity
 @Table (name = "roles")
@@ -79,28 +80,31 @@ public class Role {
     }
 
     @Override
-    public String toString() {
-        return "Role{" +
-                "id=" + id +
-                ", role='" + role + '\'' +
-                ", description='" + description +
-                '}';
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Role role1 = (Role) o;
+        return id == role1.id &&
+                Objects.equals(worker, role1.worker) &&
+                Objects.equals(role, role1.role) &&
+                Objects.equals(description, role1.description) &&
+                Objects.equals(start_date, role1.start_date) &&
+                Objects.equals(end_date, role1.end_date);
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (obj == null) {
-            return false;
-        }
-        if (obj.getClass() != this.getClass()) {
-            return false;
-        }
-        Role other = (Role) obj;
-        return (this.id == other.id) &&
-                (this.role == other.role) &&
-                (this.description == other.description) &&
-                (this.worker == other.worker) &&
-                (this.start_date == other.start_date) &&
-                (this.end_date == other.end_date);
+    public String toString() {
+        return "Role{" +
+                "id=" + id +
+                ", worker sername=" + worker.getSername() +
+                ", role='" + role + '\'' +
+                ", description='" + description + '\'' +
+                ", start_date=" + start_date +
+                ", end_date=" + end_date +
+                '}';
     }
 }

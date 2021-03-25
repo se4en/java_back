@@ -2,6 +2,7 @@ package entities;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.Objects;
 
 @Entity
 @Table (name = "workers")
@@ -116,27 +117,30 @@ public class Worker {
     }
 
     @Override
-    public String toString() {
-        return "entities.Worker{" +
-                "id=" + id +
-                "', sername='" + sername +
-                "', name='" + name +
-                "'}";
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Worker worker = (Worker) o;
+        return id == worker.id &&
+                salary == worker.salary &&
+                Objects.equals(sername, worker.sername) &&
+                Objects.equals(name, worker.name) &&
+                Objects.equals(patronymic, worker.patronymic) &&
+                Objects.equals(birthdate, worker.birthdate) &&
+                Objects.equals(phone, worker.phone) &&
+                Objects.equals(email, worker.email) &&
+                Objects.equals(address, worker.address) &&
+                Objects.equals(first_day, worker.first_day) &&
+                Objects.equals(last_day, worker.last_day) &&
+                Objects.equals(post, worker.post);
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (obj == null) {
-            return false;
-        }
-        if (obj.getClass() != this.getClass()) {
-            return false;
-        }
-        Worker other = (Worker) obj;
-        return (this.id == other.id) &&
-                (this.sername == other.sername) &&
-                (this.name == other.name) &&
-                (this.patronymic == other.patronymic) &&
-                (this.birthdate == other.birthdate);
+    public int hashCode() {
+        return Objects.hash(id, sername, name, patronymic, birthdate, phone, email, address, first_day, last_day, post, salary);
     }
 }
