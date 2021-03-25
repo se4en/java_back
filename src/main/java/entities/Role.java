@@ -17,9 +17,9 @@ public class Role {
     @JoinColumn(name = "work_id")
     private Worker worker;
 
-    //@ManyToOne(fetch = FetchType.LAZY)
-    //@JoinColumn(name = "proj_id")
-    //private Project project;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "proj_id")
+    private Project project;
 
     private String role;
     private String description;
@@ -39,13 +39,13 @@ public class Role {
         this.worker = worker;
     }
 
-    /*public Project getProject() {
+    public Project getProject() {
         return project;
     }
 
     public void setProject(Project project) {
         this.project = project;
-    }*/
+    }
 
     public String getRole() {
         return role;
