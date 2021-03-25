@@ -1,13 +1,13 @@
 package entities;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.sql.Date;
 
 @Entity
 @Table (name = "workers")
 public class Worker {
 
+    @Column(name = "work_id")
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
