@@ -24,6 +24,10 @@ public class WorkerService {
         workerDAO.delete(worker);
     }
 
+    public void deleteWorkerById(int id) {
+        workerDAO.delete(workerDAO.findById(id));
+    }
+
     public void updateWorker(Worker worker) {
         workerDAO.update(worker);
     }

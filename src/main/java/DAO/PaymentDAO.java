@@ -11,39 +11,68 @@ import java.util.List;
 public class PaymentDAO {
 
     public Payment findById(int id) {
-        return HibernateSessionFactoryUtil.getSessionFactory().openSession().get(Payment.class, id);
+        try {
+            return HibernateSessionFactoryUtil.getSessionFactory().openSession().get(Payment.class, id);
+        } catch (Exception e) {
+            System.out.println("Exception!" + e);
+            return null;
+        }
     }
 
-    public void save(Payment payment) {
-        Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
-        Transaction tx1 = session.beginTransaction();
-        session.save(payment);
-        tx1.commit();
-        session.close();
+    public boolean save(Payment payment) {
+        try {
+            Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
+            Transaction tx1 = session.beginTransaction();
+            session.save(payment);
+            tx1.commit();
+            session.close();
+            return true;
+        }
+        catch (Exception e) {
+            System.out.println("Exception!" + e);
+            return false;
+        }
     }
 
-    public void update(Payment payment) {
-        Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
-        Transaction tx1 = session.beginTransaction();
-        session.update(payment);
-        tx1.commit();
-        session.close();
+    public boolean update(Payment payment) {
+        try {
+            Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
+            Transaction tx1 = session.beginTransaction();
+            session.update(payment);
+            tx1.commit();
+            session.close();
+            return true;
+        } catch (Exception e) {
+            System.out.println("Exception!" + e);
+            return false;
+        }
     }
 
-    public void delete(Payment payment) {
-        Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
-        Transaction tx1 = session.beginTransaction();
-        session.delete(payment);
-        tx1.commit();
-        session.close();
+    public boolean delete(Payment payment) {
+        try {
+            Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
+            Transaction tx1 = session.beginTransaction();
+            session.delete(payment);
+            tx1.commit();
+            session.close();
+            return true;
+        } catch (Exception e) {
+            System.out.println("Exception!" + e);
+            return false;
+        }
     }
 
     public List<Payment> findAll() {
-        Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
-        CriteriaQuery<Payment> criteria = session.getCriteriaBuilder().createQuery(Payment.class);
-        criteria.from(Payment.class);
-        List<Payment> payments = session.createQuery(criteria).getResultList();
-        session.close();
-        return payments;
+        try {
+            Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
+            CriteriaQuery<Payment> criteria = session.getCriteriaBuilder().createQuery(Payment.class);
+            criteria.from(Payment.class);
+            List<Payment> payments = session.createQuery(criteria).getResultList();
+            session.close();
+            return payments;
+        } catch (Exception e) {
+            System.out.println("Exception!" + e);
+            return null;
+        }
     }
 }
