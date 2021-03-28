@@ -3,11 +3,11 @@
 
 #### Схема базы данных:
 
-![ER-diagram](db/ER.png)
+![ER-diagram](utils/ER.png)
 
 #### Схема навигации между страницами:
 
-![Navigation](Navigation.png)
+![Navigation](utils/Navigation.png)
 
 #### Описание страниц:
 
