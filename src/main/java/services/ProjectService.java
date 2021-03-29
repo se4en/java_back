@@ -40,8 +40,17 @@ public class ProjectService {
     }
 
     /*
-     Return all projects in which this worker participated
-      */
+     Return all projects with specific status
+     */
+    public List<Project> findProjectsByStatus(String status) {
+        List<Project> projects = findAllProjects();
+        projects.removeIf(project -> (project.getStatus() != status));
+        return projects;
+    }
+
+    /*
+     Return all projects in which worker participated
+     */
     public List<Project> findProjectsByWorker(RoleService roleService, Worker worker) {
         List<Role> roles = roleService.findRolesByWorker(worker);
         HashSet<Project> projects = new HashSet<>();
@@ -53,23 +62,32 @@ public class ProjectService {
     }
 
     /*
-     Return all projects in a given time interval
-      */
-    public List<Project> findProjectsByTime(java.sql.Timestamp start_date, java.sql.Timestamp end_date) {
+     Return all projects in which worker participated in a time period
+     */
+    public List<Project> findProjectsByWorkerInPeriod(RoleService roleService, Worker worker, java.sql.Timestamp start_date, java.sql.Timestamp end_date) {
+        List<Project> projects = findProjectsByWorker(roleService, worker);
+        projects.removeIf(project -> (project.getStart_date().after(start_date) & project.getEnd_date().before(end_date)));
+        return projects;
+    }
+
+    /*
+     Return all projects in a time period
+     */
+    public List<Project> findProjectsInPeriod(java.sql.Timestamp start_date, java.sql.Timestamp end_date) {
         List<Project> projects = findAllProjects();
         projects.removeIf(project -> (project.getStart_date().after(start_date) & project.getEnd_date().before(end_date)));
         return projects;
     }
 
     /*
-    Close project and and roles in it
+     Close project and and roles in it
      */
     public boolean closeProject(RoleService roleService, Project project) {
         if (roleService==null | project==null) {
             return false;
         }
         // get current timestamp
-        Date date= new Date();
+        Date date = new Date();
         long time = date.getTime();
         Timestamp ts = new Timestamp(time);
         // close project
