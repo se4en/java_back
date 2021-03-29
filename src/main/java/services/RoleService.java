@@ -15,20 +15,20 @@ public class RoleService {
         return roleDAO.findById(id);
     }
 
-    public void saveRole(Role role) {
-        roleDAO.save(role);
+    public boolean saveRole(Role role) {
+        return roleDAO.save(role);
     }
 
-    public void deleteRole(Role role) {
-        roleDAO.delete(role);
+    public boolean deleteRole(Role role) {
+        return roleDAO.delete(role);
     }
 
-    public void deleteRoleById(int id) {
-        roleDAO.delete(roleDAO.findById(id));
+    public boolean deleteRoleById(int id) {
+        return roleDAO.delete(roleDAO.findById(id));
     }
 
-    public void updateRole(Role role) {
-        roleDAO.update(role);
+    public boolean updateRole(Role role) {
+        return roleDAO.update(role);
     }
 
     public List<Role> findAllRoles() {
@@ -55,7 +55,7 @@ public class RoleService {
         for (Role role : roles) {
             if (role.getEnd_date()!=null) {
                 role.setEnd_date(ts);
-                if (!roleDAO.update(role)) {
+                if (!updateRole(role)) {
                     return false;
                 }
             }
