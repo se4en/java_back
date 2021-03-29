@@ -16,20 +16,20 @@ public class WorkerService {
         return workerDAO.findById(id);
     }
 
-    public void saveWorker(Worker worker) {
-        workerDAO.save(worker);
+    public boolean saveWorker(Worker worker) {
+        return workerDAO.save(worker);
     }
 
-    public void deleteWorker(Worker worker) {
-        workerDAO.delete(worker);
+    public boolean deleteWorker(Worker worker) {
+        return workerDAO.delete(worker);
     }
 
-    public void deleteWorkerById(int id) {
-        workerDAO.delete(workerDAO.findById(id));
+    public boolean deleteWorkerById(int id) {
+        return workerDAO.delete(workerDAO.findById(id));
     }
 
-    public void updateWorker(Worker worker) {
-        workerDAO.update(worker);
+    public boolean updateWorker(Worker worker) {
+        return workerDAO.update(worker);
     }
 
     public List<Worker> findAllWorkers() {
