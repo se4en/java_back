@@ -15,24 +15,24 @@ public class ProjectService {
 
     private ProjectDAO projectDAO = new ProjectDAO();
 
-    public Project projectRole(int id) {
+    public Project findProject(int id) {
         return projectDAO.findById(id);
     }
 
-    public void saveRole(Project project) {
-        projectDAO.save(project);
+    public boolean saveRole(Project project) {
+        return projectDAO.save(project);
     }
 
-    public void deleteRole(Project role) {
-        projectDAO.delete(role);
+    public boolean deleteProject(Project project) {
+        return projectDAO.delete(project);
     }
 
-    public void deleteRoleById(int id) {
-        projectDAO.delete(projectDAO.findById(id));
+    public boolean deleteProjectById(int id) {
+        return projectDAO.delete(projectDAO.findById(id));
     }
 
-    public void updateRole(Project role) {
-        projectDAO.update(role);
+    public boolean updateProject(Project project) {
+        return projectDAO.update(project);
     }
 
     public List<Project> findAllProjects() {
