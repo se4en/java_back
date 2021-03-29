@@ -10,7 +10,7 @@ CREATE TABLE workers (
     first_day DATE NOT NULL,
     last_day DATE,
     post VARCHAR NOT NULL,
-    salary MONEY NOT NULL
+    salary BIGINT NOT NULL
 );
 
 CREATE TABLE projects (
@@ -27,7 +27,7 @@ CREATE TABLE payments (
     work_id INT REFERENCES workers NOT NULL,
     type VARCHAR NOT NULL, 
     date_time TIMESTAMP NOT NULL,
-    amount MONEY NOT NULL 
+    amount BIGINT NOT NULL
 );
 
 CREATE TABLE roles (

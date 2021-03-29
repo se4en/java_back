@@ -24,6 +24,24 @@ public class Worker {
     private String post;
     private int salary;
 
+    public Worker() {};
+
+    public Worker(String sername, String name, String patronymic,
+                  Date birthdate, String phone, String email, String address,
+                  Date first_day, Date last_day, String post, int salary) {
+        this.sername = sername;
+        this.name = name;
+        this.patronymic = patronymic;
+        this.birthdate = birthdate;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.first_day = first_day;
+        this.last_day = last_day;
+        this.post = post;
+        this.salary = salary;
+    }
+
     public long getId() {
         return id;
     }

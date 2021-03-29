@@ -10,7 +10,7 @@ import java.util.List;
 
 public class WorkerDAO {
 
-    public Worker findById(int id) {
+    public Worker findById(long id) {
         try {
             return HibernateSessionFactoryUtil.getSessionFactory().openSession().get(Worker.class, id);
         } catch (Exception e) {

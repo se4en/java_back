@@ -14,7 +14,7 @@ public class WorkerService {
     public WorkerService() {
     }
 
-    public Worker findWorker(int id) {
+    public Worker findWorker(long id) {
         return workerDAO.findById(id);
     }
 
@@ -26,7 +26,7 @@ public class WorkerService {
         return workerDAO.delete(worker);
     }
 
-    public boolean deleteWorkerById(int id) {
+    public boolean deleteWorkerById(long id) {
         return workerDAO.delete(workerDAO.findById(id));
     }
 

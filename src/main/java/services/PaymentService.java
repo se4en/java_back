@@ -10,9 +10,6 @@ public class PaymentService {
 
     private PaymentDAO paymentDAO = new PaymentDAO();
 
-    public PaymentService() {
-    }
-
     public Payment findPayment(int id) {
         return paymentDAO.findById(id);
     }
