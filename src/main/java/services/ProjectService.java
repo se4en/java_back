@@ -6,16 +6,13 @@ import entities.Worker;
 import entities.Role;
 
 import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.List;
+import java.util.*;
 
 public class ProjectService {
 
     private ProjectDAO projectDAO = new ProjectDAO();
 
-    public Project findProject(int id) {
+    public Project findProject(long id) {
         return projectDAO.findById(id);
     }
 
@@ -27,7 +24,7 @@ public class ProjectService {
         return projectDAO.delete(project);
     }
 
-    public boolean deleteProjectById(int id) {
+    public boolean deleteProjectById(long id) {
         return projectDAO.delete(projectDAO.findById(id));
     }
 
@@ -44,7 +41,7 @@ public class ProjectService {
      */
     public List<Project> findProjectsByStatus(String status) {
         List<Project> projects = findAllProjects();
-        projects.removeIf(project -> (project.getStatus() != status));
+        projects.removeIf(project -> (!Objects.equals(project.getStatus(), status)));
         return projects;
     }
 
@@ -56,6 +53,7 @@ public class ProjectService {
         HashSet<Project> projects = new HashSet<>();
         for (Role role : roles)
         {
+            System.out.println(role.getProject());
             projects.add(role.getProject());
         }
         return new ArrayList<>(projects);
@@ -66,7 +64,7 @@ public class ProjectService {
      */
     public List<Project> findProjectsByWorkerInPeriod(RoleService roleService, Worker worker, java.sql.Timestamp start_date, java.sql.Timestamp end_date) {
         List<Project> projects = findProjectsByWorker(roleService, worker);
-        projects.removeIf(project -> (project.getStart_date().after(start_date) & project.getEnd_date().before(end_date)));
+        projects.removeIf(project -> (project.getStart_date()!=null && project.getEnd_date()!=null && (project.getStart_date().before(start_date) | project.getEnd_date().after(end_date))));
         return projects;
     }
 
@@ -75,7 +73,7 @@ public class ProjectService {
      */
     public List<Project> findProjectsInPeriod(java.sql.Timestamp start_date, java.sql.Timestamp end_date) {
         List<Project> projects = findAllProjects();
-        projects.removeIf(project -> (project.getStart_date().after(start_date) & project.getEnd_date().before(end_date)));
+        projects.removeIf(project -> (project.getStart_date()!=null && project.getEnd_date()!=null && (project.getStart_date().before(start_date) | project.getEnd_date().after(end_date))));
         return projects;
     }
 
@@ -86,17 +84,19 @@ public class ProjectService {
         if (roleService==null | project==null) {
             return false;
         }
+        // close project
         // get current timestamp
         Date date = new Date();
         long time = date.getTime();
         Timestamp ts = new Timestamp(time);
-        // close project
-        if (project.getEnd_date()==null | project.getStatus()!="Closed") {
-            project.setStatus("Closed");
+        if (project.getEnd_date()==null) {
             project.setEnd_date(ts);
-            if (!projectDAO.update(project)) {
-                return false;
-            }
+        }
+        if (!project.getStatus().equals("Closed")) {
+            project.setStatus("Closed");
+        }
+        if (!projectDAO.update(project)) {
+            return false;
         }
         // close roles
         return roleService.closeRolesByProject(project, ts);

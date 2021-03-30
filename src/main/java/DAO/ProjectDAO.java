@@ -10,7 +10,7 @@ import java.util.List;
 
 public class ProjectDAO {
 
-    public Project findById(int id) {
+    public Project findById(long id) {
         try {
             return HibernateSessionFactoryUtil.getSessionFactory().openSession().get(Project.class, id);
         } catch (Exception e) {
