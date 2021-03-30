@@ -7,6 +7,7 @@ import org.testng.annotations.Test;
 import services.WorkerService;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.List;
 
 public class WorkerServiceTest {
@@ -107,4 +108,66 @@ public class WorkerServiceTest {
         service.deleteWorker(worker_3);
     }
 
+    @Test
+    public void testFindWorkersByPost() {
+        WorkerService service = new WorkerService();
+        Worker worker_1 = new Worker(
+                "Fr-ool", "Anton", "Olegovich", Date.valueOf("1989-03-23"),
+                "+79995657112", "bran@yandex.ru", "MOSCOW, Shosse Entuziastov, 222/1, 246",
+                Date.valueOf("2020-10-13"), Date.valueOf("2020-10-17"), "director", 150000
+        );
+        Worker worker_2 = new Worker(
+                "Gr-ool", "Anton", "Olegovich", Date.valueOf("1989-03-23"),
+                "+79995657112", "bran@yandex.ru", "MOSCOW, Shosse Entuziastov, 222/1, 246",
+                Date.valueOf("2020-10-13"), Date.valueOf("2020-10-17"), "staff", 150000
+        );
+        Worker worker_3 = new Worker(
+                "Hr-ool", "Anton", "Olegovich", Date.valueOf("1989-03-23"),
+                "+79995657112", "bran@yandex.ru", "MOSCOW, Shosse Entuziastov, 222/1, 246",
+                Date.valueOf("2020-10-13"), Date.valueOf("2020-10-17"), "director", 150000
+        );
+
+        service.saveWorker(worker_1);
+        service.saveWorker(worker_2);
+        service.saveWorker(worker_3);
+        List<Worker> workers = service.findWorkersByPost("director");
+        int prev_size = workers.size();
+        workers.remove(worker_1);
+        workers.remove(worker_3);
+        int new_size = workers.size();
+        Assert.assertEquals(new_size, prev_size-2);
+        service.deleteWorker(worker_1);
+        service.deleteWorker(worker_2);
+        service.deleteWorker(worker_3);
+    }
+
+    @Test
+    public void testDismissWorker() {
+        WorkerService service = new WorkerService();
+        Worker worker_1 = new Worker(
+                "Fr-ool", "Anton", "Olegovich", Date.valueOf("1989-03-23"),
+                "+79995657112", "bran@yandex.ru", "MOSCOW, Shosse Entuziastov, 222/1, 246",
+                Date.valueOf("2020-10-13"), Date.valueOf("2020-10-17"), "director", 150000
+        );
+        Worker worker_2 = new Worker(
+                "Gr-ool", "Anton", "Olegovich", Date.valueOf("1989-03-23"),
+                "+79995657112", "bran@yandex.ru", "MOSCOW, Shosse Entuziastov, 222/1, 246",
+                Date.valueOf("2020-10-13"), null, "staff", 150000
+        );
+
+        service.saveWorker(worker_1);
+        service.saveWorker(worker_2);
+        // test right close
+        Assert.assertTrue(service.dismissWorker(worker_2));
+        // test fake close
+        Assert.assertTrue(service.dismissWorker(worker_1));
+        // test role after right close
+        java.util.Date utilDate = new java.util.Date();
+        java.sql.Date date = new java.sql.Date(utilDate.getTime());
+        Assert.assertEquals(service.findWorker(worker_2.getId()).getLast_day().toString(), date.toString());
+        // test role after fake close
+        Assert.assertEquals(service.findWorker(worker_1.getId()).getLast_day(), Date.valueOf("2020-10-17"));
+        service.deleteWorker(worker_1);
+        service.deleteWorker(worker_2);
+    }
 }

@@ -222,6 +222,8 @@ public class RoleServiceTest {
         service.saveRole(role_2);
         // test right close
         Assert.assertTrue(service.closeRolesByProject(project_2, Timestamp.valueOf("2011-10-02 18:48:05")));
+        // test fake close
+        Assert.assertTrue(service.closeRolesByProject(project_3, Timestamp.valueOf("2011-10-02 18:48:05")));
         // test role after right close
         Assert.assertEquals(service.findRole(role_1.getId()).getEnd_date(), Timestamp.valueOf("2011-10-02 18:48:05"));
         // test role after fake close

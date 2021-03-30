@@ -6,6 +6,7 @@ import entities.Worker;
 
 import java.util.List;
 import java.util.Date;
+import java.util.Objects;
 
 public class WorkerService {
 
@@ -43,7 +44,7 @@ public class WorkerService {
      */
     public List<Worker> findWorkersByPost(String post) {
         List<Worker> workers = findAllWorkers();
-        workers.removeIf(worker -> (worker.getPost() != post));
+        workers.removeIf(worker -> (!Objects.equals(worker.getPost(), post)));
         return workers;
     }
 
