@@ -67,11 +67,7 @@ public class Payment {
             return false;
         }
         Payment payment = (Payment) o;
-        return id == payment.id &&
-                amount == payment.amount &&
-                Objects.equals(worker, payment.worker) &&
-                Objects.equals(type, payment.type) &&
-                Objects.equals(date_time, payment.date_time);
+        return id == payment.id;
     }
 
     @Override

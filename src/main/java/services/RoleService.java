@@ -4,6 +4,7 @@ import DAO.RoleDAO;
 import entities.Project;
 import entities.Role;
 import entities.Worker;
+import java.util.Objects;
 
 import java.util.List;
 
@@ -11,7 +12,7 @@ public class RoleService {
 
     private RoleDAO roleDAO = new RoleDAO();
 
-    public Role findRole(int id) {
+    public Role findRole(long id) {
         return roleDAO.findById(id);
     }
 
@@ -23,7 +24,7 @@ public class RoleService {
         return roleDAO.delete(role);
     }
 
-    public boolean deleteRoleById(int id) {
+    public boolean deleteRoleById(long id) {
         return roleDAO.delete(roleDAO.findById(id));
     }
 
@@ -37,13 +38,13 @@ public class RoleService {
 
     public List<Role> findRolesByWorker(Worker worker) {
         List<Role> roles = findAllRoles();
-        roles.removeIf(role -> (role.getWorker() != worker));
+        roles.removeIf(role -> (!Objects.equals(role.getWorker().getId(), worker.getId())));
         return roles;
     }
 
     public List<Role> findRolesByProject(Project project) {
         List<Role> roles = findAllRoles();
-        roles.removeIf(role -> (role.getProject() != project));
+        roles.removeIf(role -> (!Objects.equals(role.getProject().getId(), project.getId())));
         return roles;
     }
 
@@ -53,7 +54,7 @@ public class RoleService {
     public boolean closeRolesByProject(Project project, java.sql.Timestamp ts) {
         List<Role> roles = findRolesByProject(project);
         for (Role role : roles) {
-            if (role.getEnd_date()!=null) {
+            if (role.getEnd_date()==null) {
                 role.setEnd_date(ts);
                 if (!updateRole(role)) {
                     return false;

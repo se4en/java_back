@@ -26,6 +26,17 @@ public class Role {
     private java.sql.Timestamp start_date;
     private java.sql.Timestamp end_date;
 
+    public Role() {}
+
+    public Role(Worker worker, Project project, String role,
+                String description, Timestamp start_date, Timestamp end_date) {
+        this.worker = worker;
+        this.project = project;
+        this.role = role;
+        this.description = description;
+        this.start_date = start_date;
+        this.end_date = end_date;
+    }
 
     public long getId() {
         return id;
@@ -88,19 +99,15 @@ public class Role {
             return false;
         }
         Role role1 = (Role) o;
-        return id == role1.id &&
-                Objects.equals(worker, role1.worker) &&
-                Objects.equals(role, role1.role) &&
-                Objects.equals(description, role1.description) &&
-                Objects.equals(start_date, role1.start_date) &&
-                Objects.equals(end_date, role1.end_date);
+        return id == role1.id;
     }
 
     @Override
     public String toString() {
         return "Role{" +
                 "id=" + id +
-                ", worker sername=" + worker.getSername() +
+                ", worker=" + worker +
+                ", project=" + project +
                 ", role='" + role + '\'' +
                 ", description='" + description + '\'' +
                 ", start_date=" + start_date +

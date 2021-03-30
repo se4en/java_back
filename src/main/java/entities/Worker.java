@@ -143,18 +143,7 @@ public class Worker {
             return false;
         }
         Worker worker = (Worker) o;
-        return id == worker.id &&
-                salary == worker.salary &&
-                Objects.equals(sername, worker.sername) &&
-                Objects.equals(name, worker.name) &&
-                Objects.equals(patronymic, worker.patronymic) &&
-                Objects.equals(birthdate, worker.birthdate) &&
-                Objects.equals(phone, worker.phone) &&
-                Objects.equals(email, worker.email) &&
-                Objects.equals(address, worker.address) &&
-                Objects.equals(first_day, worker.first_day) &&
-                Objects.equals(last_day, worker.last_day) &&
-                Objects.equals(post, worker.post);
+        return id == worker.id;
     }
 
     @Override

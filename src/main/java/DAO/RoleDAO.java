@@ -10,9 +10,11 @@ import java.util.List;
 
 public class RoleDAO {
 
-    public Role findById(int id) {
+    public Role findById(long id) {
         try {
-            return HibernateSessionFactoryUtil.getSessionFactory().openSession().get(Role.class, id);
+            Role kek = HibernateSessionFactoryUtil.getSessionFactory().openSession().get(Role.class, id);
+            System.out.println(kek);
+            return kek;
         } catch (Exception e) {
             System.out.println("Exception!" + e);
             return null;

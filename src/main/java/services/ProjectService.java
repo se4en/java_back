@@ -19,7 +19,7 @@ public class ProjectService {
         return projectDAO.findById(id);
     }
 
-    public boolean saveRole(Project project) {
+    public boolean saveProject(Project project) {
         return projectDAO.save(project);
     }
 
@@ -91,7 +91,7 @@ public class ProjectService {
         long time = date.getTime();
         Timestamp ts = new Timestamp(time);
         // close project
-        if (project.getEnd_date()!=null) {
+        if (project.getEnd_date()==null | project.getStatus()!="Closed") {
             project.setStatus("Closed");
             project.setEnd_date(ts);
             if (!projectDAO.update(project)) {

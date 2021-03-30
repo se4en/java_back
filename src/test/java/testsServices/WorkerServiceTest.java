@@ -1,14 +1,13 @@
-package services;
+package testsServices;
 
 import entities.Worker;
 
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import services.WorkerService;
+
 import java.sql.Date;
-import java.io.IOException;
-import java.sql.SQLException;
 import java.util.List;
-import java.util.Collections;
 
 public class WorkerServiceTest {
 

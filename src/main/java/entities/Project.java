@@ -19,6 +19,16 @@ public class Project {
     private java.sql.Timestamp end_date;
     private String status;
 
+    public Project() {}
+
+    public Project(String title, String description, Timestamp start_date,
+                   Timestamp end_date, String status) {
+        this.title = title;
+        this.description = description;
+        this.start_date = start_date;
+        this.end_date = end_date;
+        this.status = status;
+    }
 
     public long getId() {
         return id;
@@ -73,12 +83,7 @@ public class Project {
             return false;
         }
         Project project = (Project) o;
-        return id == project.id &&
-                Objects.equals(title, project.title) &&
-                Objects.equals(description, project.description) &&
-                Objects.equals(start_date, project.start_date) &&
-                Objects.equals(end_date, project.end_date) &&
-                Objects.equals(status, project.status);
+        return id == project.id;
     }
 
     @Override
