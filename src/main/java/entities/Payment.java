@@ -21,6 +21,14 @@ public class Payment {
     private java.sql.Timestamp date_time;
     private int amount;
 
+    public Payment() {}
+
+    public Payment(Worker worker, String type, Timestamp date_time, int amount) {
+        this.worker = worker;
+        this.type = type;
+        this.date_time = date_time;
+        this.amount = amount;
+    }
 
     public long getId() {
         return id;

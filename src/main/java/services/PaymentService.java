@@ -10,7 +10,7 @@ public class PaymentService {
 
     private PaymentDAO paymentDAO = new PaymentDAO();
 
-    public Payment findPayment(int id) {
+    public Payment findPayment(long id) {
         return paymentDAO.findById(id);
     }
 
@@ -22,7 +22,7 @@ public class PaymentService {
         return paymentDAO.delete(payment);
     }
 
-    public boolean deletePaymentById(int id) {
+    public boolean deletePaymentById(long id) {
         return paymentDAO.delete(paymentDAO.findById(id));
     }
 
@@ -39,7 +39,7 @@ public class PaymentService {
      */
     public List<Payment> findPaymentsByType(String type) {
         List<Payment> payments = findAllPayments();
-        payments.removeIf(payment -> (payment.getType() != type));
+        payments.removeIf(payment -> (!payment.getType().equals(type)));
         return payments;
     }
 
@@ -48,7 +48,7 @@ public class PaymentService {
      */
     public List<Payment> findPaymentsByWorker(Worker worker) {
         List<Payment> payments = findAllPayments();
-        payments.removeIf(payment -> (payment.getWorker() != worker));
+        payments.removeIf(payment -> (payment.getWorker().getId() != worker.getId()));
         return payments;
     }
 
@@ -57,7 +57,7 @@ public class PaymentService {
      */
     public List<Payment> findPaymentsByWorkerInPeriod(Worker worker, java.sql.Timestamp start_date, java.sql.Timestamp end_date) {
         List<Payment> payments = findPaymentsByWorker(worker);
-        payments.removeIf(payment -> (payment.getDate_time().after(start_date) & payment.getDate_time().before(end_date)));
+        payments.removeIf(payment -> (payment.getDate_time().before(start_date) | payment.getDate_time().after(end_date)));
         return payments;
     }
 
@@ -77,7 +77,7 @@ public class PaymentService {
      */
     public List<Payment> findPaymentsInPeriod(java.sql.Timestamp start_date, java.sql.Timestamp end_date) {
         List<Payment> payments = findAllPayments();
-        payments.removeIf(payment -> (payment.getDate_time().after(start_date) & payment.getDate_time().before(end_date)));
+        payments.removeIf(payment -> (payment.getDate_time().before(start_date) | payment.getDate_time().after(end_date)));
         return payments;
     }
 

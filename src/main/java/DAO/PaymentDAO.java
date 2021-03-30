@@ -10,7 +10,7 @@ import java.util.List;
 
 public class PaymentDAO {
 
-    public Payment findById(int id) {
+    public Payment findById(long id) {
         try {
             return HibernateSessionFactoryUtil.getSessionFactory().openSession().get(Payment.class, id);
         } catch (Exception e) {

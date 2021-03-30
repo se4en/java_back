@@ -237,8 +237,6 @@ public class ProjectServiceTest {
         List<Project> projects = service.findProjectsByWorkerInPeriod(roleService, worker_2,
                 Timestamp.valueOf("2011-10-01 18:48:05"), Timestamp.valueOf("2011-10-04 18:48:05"));
         int prev_size = projects.size();
-        System.out.println(projects);
-        System.out.println(project_2);
         projects.remove(project_2);
         int new_size = projects.size();
         Assert.assertEquals(new_size, prev_size - 1);
