@@ -16,20 +16,27 @@ public class ProjectService {
         return projectDAO.findById(id);
     }
 
-    public boolean saveProject(Project project) {
-        return projectDAO.save(project);
+    public void saveProject(Project project) {
+        projectDAO.save(project);
     }
 
-    public boolean deleteProject(Project project) {
-        return projectDAO.delete(project);
+    public void deleteProject(Project project) {
+        projectDAO.delete(project);
     }
 
     public boolean deleteProjectById(long id) {
-        return projectDAO.delete(projectDAO.findById(id));
+        Project project = projectDAO.findById(id);
+        if (project == null) {
+            return false;
+        }
+        else {
+            projectDAO.delete(project);
+            return true;
+        }
     }
 
-    public boolean updateProject(Project project) {
-        return projectDAO.update(project);
+    public void updateProject(Project project) {
+        projectDAO.update(project);
     }
 
     public List<Project> findAllProjects() {

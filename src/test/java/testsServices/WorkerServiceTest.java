@@ -7,7 +7,6 @@ import org.testng.annotations.Test;
 import services.WorkerService;
 
 import java.sql.Date;
-import java.sql.Timestamp;
 import java.util.List;
 
 public class WorkerServiceTest {

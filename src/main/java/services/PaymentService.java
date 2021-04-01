@@ -14,20 +14,27 @@ public class PaymentService {
         return paymentDAO.findById(id);
     }
 
-    public boolean savePayment(Payment payment) {
-        return paymentDAO.save(payment);
+    public void savePayment(Payment payment) {
+        paymentDAO.save(payment);
     }
 
-    public boolean deletePayment(Payment payment) {
-        return paymentDAO.delete(payment);
+    public void deletePayment(Payment payment) {
+        paymentDAO.delete(payment);
     }
 
     public boolean deletePaymentById(long id) {
-        return paymentDAO.delete(paymentDAO.findById(id));
+        Payment payment = paymentDAO.findById(id);
+        if (payment == null) {
+            return false;
+        }
+        else {
+            paymentDAO.delete(payment);
+            return true;
+        }
     }
 
-    public boolean updatePayment(Payment payment) {
-        return paymentDAO.update(payment);
+    public void updatePayment(Payment payment) {
+        paymentDAO.update(payment);
     }
 
     public List<Payment> findAllPayments() {

@@ -19,20 +19,27 @@ public class WorkerService {
         return workerDAO.findById(id);
     }
 
-    public boolean saveWorker(Worker worker) {
-        return workerDAO.save(worker);
+    public void saveWorker(Worker worker) {
+        workerDAO.save(worker);
     }
 
-    public boolean deleteWorker(Worker worker) {
-        return workerDAO.delete(worker);
+    public void deleteWorker(Worker worker) {
+        workerDAO.delete(worker);
     }
 
     public boolean deleteWorkerById(long id) {
-        return workerDAO.delete(workerDAO.findById(id));
+        Worker worker = workerDAO.findById(id);
+        if (worker == null) {
+            return false;
+        }
+        else {
+            workerDAO.delete(worker);
+            return true;
+        }
     }
 
-    public boolean updateWorker(Worker worker) {
-        return workerDAO.update(worker);
+    public void updateWorker(Worker worker) {
+        workerDAO.update(worker);
     }
 
     public List<Worker> findAllWorkers() {
@@ -50,13 +57,16 @@ public class WorkerService {
 
     public boolean dismissWorker(Worker worker) {
         if (worker.getLast_day() != null) {
-            return true;
+            return false;
         }
-        // get current date
-        Date utilDate = new Date();
-        java.sql.Date date = new java.sql.Date(utilDate.getTime());
-        worker.setLast_day(date);
-        return saveWorker(worker);
+        else {
+            // get current date
+            Date utilDate = new Date();
+            java.sql.Date date = new java.sql.Date(utilDate.getTime());
+            worker.setLast_day(date);
+            saveWorker(worker);
+            return false;
+        }
     }
 
 }
