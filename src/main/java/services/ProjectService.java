@@ -102,9 +102,7 @@ public class ProjectService {
         if (!project.getStatus().equals("Closed")) {
             project.setStatus("Closed");
         }
-        if (!projectDAO.update(project)) {
-            return false;
-        }
+        projectDAO.update(project);
         // close roles
         return roleService.closeRolesByProject(project, ts);
     }

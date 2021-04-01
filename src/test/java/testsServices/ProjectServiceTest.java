@@ -85,9 +85,6 @@ public class ProjectServiceTest {
         service.saveProject(project);
         service.deleteProject(project);
         Assert.assertNull(service.findProject(project.getId()));
-        // test empty delete
-        service.deleteProject(project);
-        Assert.assertNull(service.findProject(project.getId()));
     }
 
     @Test
@@ -106,8 +103,6 @@ public class ProjectServiceTest {
         service_project = service.findProject(service_project.getId());
         Assert.assertEquals(service.findProject(service_project.getId()).getStatus(), "pause");
         service.deleteProjectById(service_project.getId());
-        // test empty update
-        Assert.assertFalse(service.updateProject(service_project));
     }
 
 

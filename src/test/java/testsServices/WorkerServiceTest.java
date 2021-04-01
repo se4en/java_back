@@ -46,9 +46,6 @@ public class WorkerServiceTest {
         service.saveWorker(worker);
         service.deleteWorker(worker);
         Assert.assertEquals(service.findWorker(worker.getId()), null);
-        // test empty delete
-        service.deleteWorker(worker);
-        Assert.assertEquals(service.findWorker(worker.getId()), null);
     }
 
     @Test
@@ -68,8 +65,6 @@ public class WorkerServiceTest {
         service_worker = service.findWorker(service_worker.getId());
         Assert.assertEquals(service.findWorker(service_worker.getId()).getSalary(), 200000);
         service.deleteWorkerById(service_worker.getId());
-        // test empty update
-        Assert.assertEquals(service.updateWorker(service_worker), false);
     }
 
 
@@ -159,7 +154,7 @@ public class WorkerServiceTest {
         // test right close
         Assert.assertTrue(service.dismissWorker(worker_2));
         // test fake close
-        Assert.assertTrue(service.dismissWorker(worker_1));
+        Assert.assertFalse(service.dismissWorker(worker_1));
         // test role after right close
         java.util.Date utilDate = new java.util.Date();
         java.sql.Date date = new java.sql.Date(utilDate.getTime());

@@ -75,9 +75,6 @@ public class PaymentServiceTest {
         service.savePayment(payment);
         service.deletePayment(payment);
         Assert.assertNull(service.findPayment(payment.getId()));
-        // test empty delete
-        service.deletePayment(payment);
-        Assert.assertNull(service.findPayment(payment.getId()));
     }
 
     @Test
@@ -93,8 +90,6 @@ public class PaymentServiceTest {
         service_payment = service.findPayment(service_payment.getId());
         Assert.assertEquals(service.findPayment(service_payment.getId()).getType(), "type-2");
         service.deletePaymentById(service_payment.getId());
-        // test empty update
-        Assert.assertFalse(service.updatePayment(service_payment));
     }
 
     @Test

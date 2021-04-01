@@ -63,9 +63,11 @@ public class RoleService {
         for (Role role : roles) {
             if (role.getEnd_date()==null) {
                 role.setEnd_date(ts);
-                if (!updateRole(role)) {
-                    return false;
-                }
+                updateRole(role);
+                return true;
+            }
+            else {
+                return false;
             }
         }
         return true;

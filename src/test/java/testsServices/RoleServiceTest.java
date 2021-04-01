@@ -105,9 +105,6 @@ public class RoleServiceTest {
         service.saveRole(role);
         service.deleteRole(role);
         Assert.assertEquals(service.findRole(role.getId()), null);
-        // test empty delete
-        service.deleteRole(role);
-        Assert.assertEquals(service.findRole(role.getId()), null);
     }
 
     @Test
@@ -126,8 +123,6 @@ public class RoleServiceTest {
         service_role = service.findRole(service_role.getId());
         Assert.assertEquals(service.findRole(service_role.getId()).getRole(), "role-2");
         service.deleteRoleById(service_role.getId());
-        // test empty update
-        Assert.assertEquals(service.updateRole(service_role), false);
     }
 
 
@@ -223,7 +218,7 @@ public class RoleServiceTest {
         // test right close
         Assert.assertTrue(service.closeRolesByProject(project_2, Timestamp.valueOf("2011-10-02 18:48:05")));
         // test fake close
-        Assert.assertTrue(service.closeRolesByProject(project_3, Timestamp.valueOf("2011-10-02 18:48:05")));
+        Assert.assertFalse(service.closeRolesByProject(project_3, Timestamp.valueOf("2011-10-02 18:48:05")));
         // test role after right close
         Assert.assertEquals(service.findRole(role_1.getId()).getEnd_date(), Timestamp.valueOf("2011-10-02 18:48:05"));
         // test role after fake close
