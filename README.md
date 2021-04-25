@@ -4,8 +4,6 @@
 
 ![Test-coverage](utils/new_test_coverage.png)
 
-## Часть 1. 
-
 #### Схема базы данных:
 
 ![ER-diagram](utils/ER.png)
