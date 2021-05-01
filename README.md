@@ -2,9 +2,7 @@
 
 #### Покрытие тестами:
 
-![ER-diagram](utils/test_coverage.png)
-
-## Часть 1. 
+![Test-coverage](utils/new_test_coverage.png)
 
 #### Схема базы данных:
 
