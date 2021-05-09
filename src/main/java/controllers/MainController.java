@@ -6,12 +6,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-public class HelloController {
+public class MainController {
 
-    @GetMapping("/helloworld")
+    @GetMapping("/main")
     public String helloWorld(@RequestParam(name="name", required=false, defaultValue="World") String name, Model model) {
         model.addAttribute("name", name);
-        return "helloworld";
+        return "main";
     }
 
 }
