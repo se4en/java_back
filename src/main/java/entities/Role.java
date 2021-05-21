@@ -11,7 +11,7 @@ public class Role {
     @Column(name = "role_id")
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private int id;
 
     @ManyToOne(fetch=FetchType.EAGER)
     @JoinColumn(name = "work_id")
@@ -38,7 +38,7 @@ public class Role {
         this.end_date = end_date;
     }
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 

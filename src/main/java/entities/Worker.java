@@ -11,7 +11,7 @@ public class Worker {
     @Column(name = "work_id")
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private int id;
     private String sername;
     private String name;
     private String patronymic;
@@ -22,7 +22,7 @@ public class Worker {
     private java.sql.Date first_day;
     private java.sql.Date last_day;
     private String post;
-    private int salary;
+    private long salary;
 
     public Worker() {};
 
@@ -126,11 +126,11 @@ public class Worker {
         this.post = post;
     }
 
-    public int getSalary() {
+    public long getSalary() {
         return salary;
     }
 
-    public void setSalary(int salary) {
+    public void setSalary(long salary) {
         this.salary = salary;
     }
 

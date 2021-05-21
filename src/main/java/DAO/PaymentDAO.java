@@ -3,11 +3,13 @@ package DAO;
 import entities.Payment;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.springframework.stereotype.Repository;
 import utils.HibernateSessionFactoryUtil;
 import javax.persistence.criteria.CriteriaQuery;
 import java.util.List;
 
 
+@Repository
 public class PaymentDAO {
 
     public Payment findById(long id) {

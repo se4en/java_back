@@ -2,9 +2,12 @@ package controllers;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.ApplicationContext;
 
 @SpringBootApplication
+//@EntityScan( basePackages = {"entities"} )
+@EntityScan("entities")
 public class App {
     private static ApplicationContext applicationContext;
 

@@ -11,7 +11,7 @@ public class Payment {
     @Column(name = "paym_id")
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private int id;
 
     @ManyToOne(fetch=FetchType.EAGER)
     @JoinColumn(name = "work_id")
@@ -19,7 +19,7 @@ public class Payment {
 
     private String type;
     private java.sql.Timestamp date_time;
-    private int amount;
+    private long amount;
 
     public Payment() {}
 
@@ -58,7 +58,7 @@ public class Payment {
         this.date_time = date_time;
     }
 
-    public int getAmount() {
+    public long getAmount() {
         return amount;
     }
 

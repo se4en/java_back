@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Home page</title>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+</head>
+<body>
+
+<table class="table table-danger">
+    <thead class="thead-dark">
+    <tr>
+        <th scope="col"> Name </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="worker : ${workers}">
+        <td><a th:href="'/client?client_id=' + ${worker.getId()}"> <span th:text="${worker.getName()}"> </span> </a></td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>
