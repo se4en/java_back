@@ -7,10 +7,7 @@ import org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfigurat
 import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import services.ProjectService;
 
 import java.sql.Date;
@@ -30,6 +27,13 @@ public class ProjectController {
         List<Project> projects = projectService.findAllProjects();  // todo load not all films
         model.addAttribute("projects", projects);
         return "project/all";
+    }
+
+    @GetMapping("/delete/{id}")
+    public String deleteProject(@PathVariable(value = "id") long id) {
+
+        projectService.deleteProjectById(id);
+        return "redirect:/project/all";
     }
 
 }

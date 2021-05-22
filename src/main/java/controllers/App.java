@@ -19,7 +19,7 @@ public class App {
 
     public static void main(String[] args) {
         applicationContext = SpringApplication.run(App.class, args);
-        displayAllBeans();
+        //displayAllBeans();
     }
 
     public static void displayAllBeans() {

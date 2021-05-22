@@ -35,7 +35,7 @@
                 <a class="nav-link" id="all_clients_link" href="/project/all">Projects</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" id="all_payments_link" href="/payments/all">Payments</a>
+                <a class="nav-link" id="all_payments_link" href="/payment/all">Payments</a>
             </li>
         </ul>
     </div>
@@ -58,6 +58,7 @@
             <th scope="col"> End date</th>
             <th scope="col"> Status</th>
             <th scope="col"> Description</th>
+            <th> Actions </th>
         </tr>
         </thead>
         <tbody>
@@ -65,12 +66,14 @@
             <td colspan="8"> No available projects</td>
         </tr>
         <tr th:each="project : ${projects}">
-            <td><a th:href="'/project/?id=' + ${project.getId()}"> <span th:text="${project.getTitle()}"> </span>
-            </a></td>
+            <td><span th:text="${project.getTitle()}"> </span></td>
+            <td><span th:text="${project.getStatus()}"> </span></td>
             <td><span th:text="${project.getStart_date()}"> </span></td>
             <td><span th:text="${project.getEnd_date()}"> </span></td>
-            <td><span th:text="${project.getStatus()}"> </span></td>
-            <td><span th:text="${project.getDescription()}"> </span></td>
+            <td><span th:text="${project.getDescription()}"> </span>
+            </td><td> <a th:href="'/project/update?id=' + ${project.getId()}" class="btn btn-primary">Update</a>
+            <a th:href="@{delete/{id}(id=${project.getId()})}" class="btn btn-danger">Delete</a>
+        </td>
         </tr>
 
         </tbody>
