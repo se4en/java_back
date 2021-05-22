@@ -36,4 +36,25 @@ public class ProjectController {
         return "redirect:/project/all";
     }
 
+    @GetMapping("/new")
+    public String newProject(Model model) {
+        Project project = new Project();
+        model.addAttribute("project", project);
+        return "project/new";
+    }
+
+    @PostMapping("/save")
+    public String saveProject(@ModelAttribute("project") Project project) {
+        projectService.saveProject(project);
+        return "redirect:/project/all";
+    }
+
+    @GetMapping("/update/{id}")
+    public String updateProject(@PathVariable(value = "id") long id, Model model) {
+        Project project = projectService.findProject(id);
+
+        model.addAttribute("project", project);
+        return "project/update";
+    }
+
 }

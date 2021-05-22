@@ -54,9 +54,9 @@
         <thead class="thead-dark">
         <tr>
             <th scope="col"> Title</th>
+            <th scope="col"> Status</th>
             <th scope="col"> Start date</th>
             <th scope="col"> End date</th>
-            <th scope="col"> Status</th>
             <th scope="col"> Description</th>
             <th> Actions </th>
         </tr>
@@ -71,7 +71,7 @@
             <td><span th:text="${project.getStart_date()}"> </span></td>
             <td><span th:text="${project.getEnd_date()}"> </span></td>
             <td><span th:text="${project.getDescription()}"> </span>
-            </td><td> <a th:href="'/project/update?id=' + ${project.getId()}" class="btn btn-primary">Update</a>
+            </td><td> <a th:href="@{update/{id}(id=${project.getId()})}" class="btn btn-primary">Update</a>
             <a th:href="@{delete/{id}(id=${project.getId()})}" class="btn btn-danger">Delete</a>
         </td>
         </tr>
