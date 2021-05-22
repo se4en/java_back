@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <title>Projects list</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <style>
+        .indent {
+            margin-left: 30px;
+            margin-right: 30px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+
+<!--page header-->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" id="home_link" href="/home">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="all_workers_link" href="/worker/all">Workers</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="all_clients_link" href="/project/all">Projects</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="all_payments_link" href="/payments/all">Payments</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<!--end of page header-->
+
+
+<div class="indent">
+
+    <form method="post" action="/project/add">
+        <button id="addProjectButton" type="submit" class="btn btn-primary">Add project</button>
+    </form>
+    <br>
+
+    <table class="table table-bordered table-warning">
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col"> Title</th>
+            <th scope="col"> Start date</th>
+            <th scope="col"> End date</th>
+            <th scope="col"> Status</th>
+            <th scope="col"> Description</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:if="${projects.empty}">
+            <td colspan="8"> No available projects</td>
+        </tr>
+        <tr th:each="project : ${projects}">
+            <td><a th:href="'/project/?id=' + ${project.getId()}"> <span th:text="${project.getTitle()}"> </span>
+            </a></td>
+            <td><span th:text="${project.getStart_date()}"> </span></td>
+            <td><span th:text="${project.getEnd_date()}"> </span></td>
+            <td><span th:text="${project.getStatus()}"> </span></td>
+            <td><span th:text="${project.getDescription()}"> </span></td>
+        </tr>
+
+        </tbody>
+    </table>
+</div>
+
+<!--for bootstrap-->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+<!--end for bootstrap-->
+</body>
+</html>
