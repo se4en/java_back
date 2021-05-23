@@ -51,7 +51,7 @@ public class PaymentServiceTest {
     @Test
     public void testSaveFindPayment() {
         PaymentService service = new PaymentService();
-        Payment payment = new Payment(worker_1, "type-1", Timestamp.valueOf("2011-10-02 18:48:05"),10000);
+        Payment payment = new Payment(worker_1, "type-1", Date.valueOf("2011-10-02 18:48:05"),10000);
 
         // test save-find
         service.savePayment(payment);
@@ -65,7 +65,7 @@ public class PaymentServiceTest {
     @Test
     public void testDeletePayment() {
         PaymentService service = new PaymentService();
-        Payment payment = new Payment(worker_1, "type-1", Timestamp.valueOf("2011-10-02 18:48:05"),10000);
+        Payment payment = new Payment(worker_1, "type-1", Date.valueOf("2011-10-02 18:48:05"),10000);
 
         // test delete by id
         service.savePayment(payment);
@@ -80,7 +80,7 @@ public class PaymentServiceTest {
     @Test
     public void testUpdatePayment() {
         PaymentService service = new PaymentService();
-        Payment payment = new Payment(worker_1, "type-1", Timestamp.valueOf("2011-10-02 18:48:05"),10000);
+        Payment payment = new Payment(worker_1, "type-1", Date.valueOf("2011-10-02 18:48:05"),10000);
 
         // test save-update
         service.savePayment(payment);
@@ -95,9 +95,9 @@ public class PaymentServiceTest {
     @Test
     public void testFindAllPayments() {
         PaymentService service = new PaymentService();
-        Payment payment_1 = new Payment(worker_1, "type-1", Timestamp.valueOf("2011-10-02 18:48:05"),10000);
-        Payment payment_2 = new Payment(worker_1, "type-2", Timestamp.valueOf("2011-10-02 18:48:05"),10000);
-        Payment payment_3= new Payment(worker_1, "type-1", Timestamp.valueOf("2011-10-02 18:48:05"),10000);
+        Payment payment_1 = new Payment(worker_1, "type-1", Date.valueOf("2011-10-02 18:48:05"),10000);
+        Payment payment_2 = new Payment(worker_1, "type-2", Date.valueOf("2011-10-02 18:48:05"),10000);
+        Payment payment_3= new Payment(worker_1, "type-1", Date.valueOf("2011-10-02 18:48:05"),10000);
         service.savePayment(payment_1);
         service.savePayment(payment_2);
         service.savePayment(payment_3);
@@ -116,9 +116,9 @@ public class PaymentServiceTest {
     @Test
     public void testFindPaymentsByType() {
         PaymentService service = new PaymentService();
-        Payment payment_1 = new Payment(worker_1, "type-1", Timestamp.valueOf("2011-10-02 18:48:05"),10000);
-        Payment payment_2 = new Payment(worker_1, "type-2", Timestamp.valueOf("2011-10-02 18:48:05"),10000);
-        Payment payment_3= new Payment(worker_1, "type-1", Timestamp.valueOf("2011-10-02 18:48:05"),10000);
+        Payment payment_1 = new Payment(worker_1, "type-1", Date.valueOf("2011-10-02 18:48:05"),10000);
+        Payment payment_2 = new Payment(worker_1, "type-2", Date.valueOf("2011-10-02 18:48:05"),10000);
+        Payment payment_3= new Payment(worker_1, "type-1", Date.valueOf("2011-10-02 18:48:05"),10000);
         service.savePayment(payment_1);
         service.savePayment(payment_2);
         service.savePayment(payment_3);
@@ -137,9 +137,9 @@ public class PaymentServiceTest {
     public void testFindPaymentsByWorker() {
         // create payments
         PaymentService service = new PaymentService();
-        Payment payment_1 = new Payment(worker_1, "type-1", Timestamp.valueOf("2011-10-02 18:48:05"),10000);
-        Payment payment_2 = new Payment(worker_3, "type-2", Timestamp.valueOf("2011-10-02 18:48:05"),10000);
-        Payment payment_3 = new Payment(worker_3, "type-1", Timestamp.valueOf("2011-10-02 18:48:05"),10000);
+        Payment payment_1 = new Payment(worker_1, "type-1", Date.valueOf("2011-10-02 18:48:05"),10000);
+        Payment payment_2 = new Payment(worker_3, "type-2", Date.valueOf("2011-10-02 18:48:05"),10000);
+        Payment payment_3 = new Payment(worker_3, "type-1", Date.valueOf("2011-10-02 18:48:05"),10000);
         service.savePayment(payment_1);
         service.savePayment(payment_2);
         service.savePayment(payment_3);
@@ -159,14 +159,14 @@ public class PaymentServiceTest {
     @Test
     public void testFindPaymentsInPeriod() {
         PaymentService service = new PaymentService();
-        Payment payment_1 = new Payment(worker_1, "type-1", Timestamp.valueOf("2011-10-06 18:48:05"),10000);
-        Payment payment_2 = new Payment(worker_3, "type-2", Timestamp.valueOf("2011-10-12 18:48:05"),10000);
-        Payment payment_3 = new Payment(worker_3, "type-1", Timestamp.valueOf("2011-10-18 18:48:05"),10000);
+        Payment payment_1 = new Payment(worker_1, "type-1", Date.valueOf("2011-10-06 18:48:05"),10000);
+        Payment payment_2 = new Payment(worker_3, "type-2", Date.valueOf("2011-10-12 18:48:05"),10000);
+        Payment payment_3 = new Payment(worker_3, "type-1", Date.valueOf("2011-10-18 18:48:05"),10000);
         service.savePayment(payment_1);
         service.savePayment(payment_2);
         service.savePayment(payment_3);
-        List<Payment> payments = service.findPaymentsInPeriod(Timestamp.valueOf("2011-10-10 18:48:05"),
-                Timestamp.valueOf("2011-10-20 18:48:05"));
+        List<Payment> payments = service.findPaymentsInPeriod(Date.valueOf("2011-10-10 18:48:05"),
+                Date.valueOf("2011-10-20 18:48:05"));
         int prev_size = payments.size();
         payments.remove(payment_2);
         payments.remove(payment_3);
@@ -181,15 +181,15 @@ public class PaymentServiceTest {
     public void testFindPaymentsByWorkerInPeriod() {
         // create payments
         PaymentService service = new PaymentService();
-        Payment payment_1 = new Payment(worker_2, "type-1", Timestamp.valueOf("2011-10-06 18:48:05"),10000);
-        Payment payment_2 = new Payment(worker_3, "type-2", Timestamp.valueOf("2011-10-12 18:48:05"),10000);
-        Payment payment_3 = new Payment(worker_3, "type-1", Timestamp.valueOf("2011-10-18 18:48:05"),10000);
+        Payment payment_1 = new Payment(worker_2, "type-1", Date.valueOf("2011-10-06 18:48:05"),10000);
+        Payment payment_2 = new Payment(worker_3, "type-2", Date.valueOf("2011-10-12 18:48:05"),10000);
+        Payment payment_3 = new Payment(worker_3, "type-1", Date.valueOf("2011-10-18 18:48:05"),10000);
         service.savePayment(payment_1);
         service.savePayment(payment_2);
         service.savePayment(payment_3);
         // test
-        List<Payment> payments = service.findPaymentsByWorkerInPeriod(worker_3, Timestamp.valueOf("2011-10-01 18:48:05"),
-                Timestamp.valueOf("2011-10-30 18:48:05"));
+        List<Payment> payments = service.findPaymentsByWorkerInPeriod(worker_3, Date.valueOf("2011-10-01 18:48:05"),
+                Date.valueOf("2011-10-30 18:48:05"));
         int prev_size = payments.size();
         payments.remove(payment_2);
         payments.remove(payment_3);
@@ -205,15 +205,15 @@ public class PaymentServiceTest {
     public void testGetCostsByWorkerInPeriod() {
         // create payments
         PaymentService service = new PaymentService();
-        Payment payment_1 = new Payment(worker_1, "type-1", Timestamp.valueOf("2011-10-06 18:48:05"),10000);
-        Payment payment_2 = new Payment(worker_2, "type-2", Timestamp.valueOf("2011-10-12 18:48:05"),10000);
-        Payment payment_3 = new Payment(worker_2, "type-1", Timestamp.valueOf("2011-10-18 18:48:05"),10000);
+        Payment payment_1 = new Payment(worker_1, "type-1", Date.valueOf("2011-10-06 18:48:05"),10000);
+        Payment payment_2 = new Payment(worker_2, "type-2", Date.valueOf("2011-10-12 18:48:05"),10000);
+        Payment payment_3 = new Payment(worker_2, "type-1", Date.valueOf("2011-10-18 18:48:05"),10000);
         service.savePayment(payment_1);
         service.savePayment(payment_2);
         service.savePayment(payment_3);
         // test
-        Assert.assertEquals(service.getCostsByWorkerInPeriod(worker_2, Timestamp.valueOf("2011-10-10 18:48:05"),
-                Timestamp.valueOf("2011-10-15 18:48:05")), 10000);
+        Assert.assertEquals(service.getCostsByWorkerInPeriod(worker_2, Date.valueOf("2011-10-10 18:48:05"),
+                Date.valueOf("2011-10-15 18:48:05")), 10000);
         // delete
         service.deletePayment(payment_1);
         service.deletePayment(payment_2);
@@ -224,16 +224,16 @@ public class PaymentServiceTest {
     public void testGetCostsInPeriod() {
         // create payments
         PaymentService service = new PaymentService();
-        Payment payment_1 = new Payment(worker_1, "type-1", Timestamp.valueOf("2011-10-06 18:48:05"),10000);
-        Payment payment_2 = new Payment(worker_2, "type-2", Timestamp.valueOf("2011-10-12 18:48:05"), 5000);
-        Payment payment_3 = new Payment(worker_3, "type-1", Timestamp.valueOf("2011-10-18 18:48:05"),10000);
+        Payment payment_1 = new Payment(worker_1, "type-1", Date.valueOf("2011-10-06 18:48:05"),10000);
+        Payment payment_2 = new Payment(worker_2, "type-2", Date.valueOf("2011-10-12 18:48:05"), 5000);
+        Payment payment_3 = new Payment(worker_3, "type-1", Date.valueOf("2011-10-18 18:48:05"),10000);
         service.savePayment(payment_1);
         service.savePayment(payment_2);
         service.savePayment(payment_3);
         // test
         Assert.assertEquals(
-                service.getCostsInPeriod(Timestamp.valueOf("2011-10-01 18:48:05"), Timestamp.valueOf("2011-10-20 18:48:05")) -
-                        service.getCostsInPeriod(Timestamp.valueOf("2011-10-10 18:48:05"), Timestamp.valueOf("2011-10-20 18:48:05")),
+                service.getCostsInPeriod(Date.valueOf("2011-10-01 18:48:05"), Date.valueOf("2011-10-20 18:48:05")) -
+                        service.getCostsInPeriod(Date.valueOf("2011-10-10 18:48:05"), Date.valueOf("2011-10-20 18:48:05")),
                 10000);
         // delete
         service.deletePayment(payment_1);

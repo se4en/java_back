@@ -1,6 +1,7 @@
 package entities;
 
 import javax.persistence.*;
+import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.Objects;
 
@@ -13,20 +14,21 @@ public class Payment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @ManyToOne(fetch=FetchType.EAGER)
+    //@ManyToOne(fetch=FetchType.EAGER)
+    @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name = "work_id")
     private Worker worker;
 
     private String type;
-    private java.sql.Timestamp date_time;
+    private java.sql.Date date;
     private int amount;
 
     public Payment() {}
 
-    public Payment(Worker worker, String type, Timestamp date_time, int amount) {
+    public Payment(Worker worker, String type, Date date_time, int amount) {
         this.worker = worker;
         this.type = type;
-        this.date_time = date_time;
+        this.date = date;
         this.amount = amount;
     }
 
@@ -50,12 +52,12 @@ public class Payment {
         this.type = type;
     }
 
-    public Timestamp getDate_time() {
-        return date_time;
+    public Date getDate_time() {
+        return date;
     }
 
-    public void setDate_time(Timestamp date_time) {
-        this.date_time = date_time;
+    public void setDate_time(Date date_time) {
+        this.date = date_time;
     }
 
     public int getAmount() {
@@ -84,7 +86,7 @@ public class Payment {
                 "id=" + id +
                 ", worker sername=" + worker.getSername() +
                 ", type='" + type + '\'' +
-                ", date_time=" + date_time +
+                ", date_time=" + date +
                 ", amount=" + amount +
                 '}';
     }

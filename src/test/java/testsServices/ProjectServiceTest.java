@@ -56,8 +56,8 @@ public class ProjectServiceTest {
     public void testSaveFindProject() {
         ProjectService service = new ProjectService();
         Project project = new Project(
-                "project-1", "description", Timestamp.valueOf("2011-10-02 18:48:05"),
-                Timestamp.valueOf("2011-10-02 18:48:05"), "active"
+                "project-1", "description", Date.valueOf("2011-10-02 18:48:05"),
+                Date.valueOf("2011-10-02 18:48:05"), "active"
         );
 
         // test save-find
@@ -73,8 +73,8 @@ public class ProjectServiceTest {
     public void testDeleteProject() {
         ProjectService service = new ProjectService();
         Project project = new Project(
-                "project-1", "description", Timestamp.valueOf("2011-10-02 18:48:05"),
-                Timestamp.valueOf("2011-10-02 18:48:05"), "active"
+                "project-1", "description", Date.valueOf("2011-10-02 18:48:05"),
+                Date.valueOf("2011-10-02 18:48:05"), "active"
         );
 
         // test delete by id
@@ -91,8 +91,8 @@ public class ProjectServiceTest {
     public void testUpdateProject() {
         ProjectService service = new ProjectService();
         Project project = new Project(
-                "project-1", "description", Timestamp.valueOf("2011-10-02 18:48:05"),
-                Timestamp.valueOf("2011-10-02 18:48:05"), "active"
+                "project-1", "description", Date.valueOf("2011-10-02 18:48:05"),
+                Date.valueOf("2011-10-02 18:48:05"), "active"
         );
 
         // test save-update
@@ -110,16 +110,16 @@ public class ProjectServiceTest {
     public void testFindProjectsByStatus() {
         ProjectService service = new ProjectService();
         Project project_1 = new Project(
-                "project-1", "description", Timestamp.valueOf("2011-10-02 18:48:05"),
-                Timestamp.valueOf("2011-10-02 18:48:05"), "active"
+                "project-1", "description", Date.valueOf("2011-10-02 18:48:05"),
+                Date.valueOf("2011-10-02 18:48:05"), "active"
         );
         Project project_2 = new Project(
-                "project-2", "description", Timestamp.valueOf("2011-10-02 18:48:05"),
-                Timestamp.valueOf("2011-10-02 18:48:05"), "pause"
+                "project-2", "description", Date.valueOf("2011-10-02 18:48:05"),
+                Date.valueOf("2011-10-02 18:48:05"), "pause"
         );
         Project project_3 = new Project(
-                "project-3", "description", Timestamp.valueOf("2011-10-02 18:48:05"),
-                Timestamp.valueOf("2011-10-02 18:48:05"), "active"
+                "project-3", "description", Date.valueOf("2011-10-02 18:48:05"),
+                Date.valueOf("2011-10-02 18:48:05"), "active"
         );
         service.saveProject(project_1);
         service.saveProject(project_2);
@@ -140,23 +140,23 @@ public class ProjectServiceTest {
         // create projects
         ProjectService service = new ProjectService();
         Project project_1 = new Project(
-                "project-1", "description", Timestamp.valueOf("2011-10-02 18:48:05"),
-                Timestamp.valueOf("2011-10-02 18:48:05"), "active"
+                "project-1", "description", Date.valueOf("2011-10-02 18:48:05"),
+                Date.valueOf("2011-10-02 18:48:05"), "active"
         );
         Project project_2 = new Project(
-                "project-2", "description", Timestamp.valueOf("2011-10-02 18:48:05"),
-                Timestamp.valueOf("2011-10-02 18:48:05"), "pause"
+                "project-2", "description", Date.valueOf("2011-10-02 18:48:05"),
+                Date.valueOf("2011-10-02 18:48:05"), "pause"
         );
         service.saveProject(project_1);
         service.saveProject(project_2);
         // create roles
         Role role_1 = new Role(
                 worker_1, project_1, "role-3", "description",
-                Timestamp.valueOf("2011-10-02 18:48:05"), Timestamp.valueOf("2011-10-02 19:48:05")
+                Date.valueOf("2011-10-02"), Date.valueOf("2011-10-02")
         );
         Role role_2 = new Role(
                 worker_1, project_2, "role-4", "description",
-                Timestamp.valueOf("2011-10-02 18:48:05"), Timestamp.valueOf("2011-10-02 19:48:05")
+                Date.valueOf("2011-10-02"), Date.valueOf("2011-10-02")
         );
         roleService.saveRole(role_1);
         roleService.saveRole(role_2);
@@ -178,16 +178,16 @@ public class ProjectServiceTest {
     public void testFindProjectsInPeriod() {
         ProjectService service = new ProjectService();
         Project project_1 = new Project(
-                "project-1", "description", Timestamp.valueOf("2011-08-02 18:48:05"),
-                Timestamp.valueOf("2011-09-02 18:48:05"), "active"
+                "project-1", "description", Date.valueOf("2011-08-02 18:48:05"),
+                Date.valueOf("2011-09-02 18:48:05"), "active"
         );
         Project project_2 = new Project(
-                "project-2", "description", Timestamp.valueOf("2011-08-16 18:48:05"),
-                Timestamp.valueOf("2011-09-16 18:48:05"), "pause"
+                "project-2", "description", Date.valueOf("2011-08-16 18:48:05"),
+                Date.valueOf("2011-09-16 18:48:05"), "pause"
         );
         Project project_3 = new Project(
-                "project-3", "description", Timestamp.valueOf("2011-09-02 18:48:05"),
-                Timestamp.valueOf("2011-10-02 18:48:05"), "active"
+                "project-3", "description", Date.valueOf("2011-09-02 18:48:05"),
+                Date.valueOf("2011-10-02 18:48:05"), "active"
         );
         service.saveProject(project_1);
         service.saveProject(project_2);
@@ -208,29 +208,29 @@ public class ProjectServiceTest {
         // create projects
         ProjectService service = new ProjectService();
         Project project_1 = new Project(
-                "project-1", "description", Timestamp.valueOf("2011-10-02 18:48:05"),
-                Timestamp.valueOf("2011-10-02 18:48:05"), "active"
+                "project-1", "description", Date.valueOf("2011-10-02 18:48:05"),
+                Date.valueOf("2011-10-02 18:48:05"), "active"
         );
         Project project_2 = new Project(
-                "project-2", "description", Timestamp.valueOf("2011-10-02 18:48:05"),
-                Timestamp.valueOf("2011-10-02 18:48:05"), "pause"
+                "project-2", "description", Date.valueOf("2011-10-02 18:48:05"),
+                Date.valueOf("2011-10-02 18:48:05"), "pause"
         );
         service.saveProject(project_1);
         service.saveProject(project_2);
         // create roles
         Role role_1 = new Role(
                 worker_1, project_1, "role-9", "description",
-                Timestamp.valueOf("2011-10-02 18:48:05"), Timestamp.valueOf("2011-11-02 19:48:05")
+                Date.valueOf("2011-10-02 18:48:05"), Date.valueOf("2011-11-02 19:48:05")
         );
         Role role_2 = new Role(
                 worker_2, project_2, "role-0", "description",
-                Timestamp.valueOf("2011-10-02 18:48:05"), Timestamp.valueOf("2011-10-03 19:48:05")
+                Date.valueOf("2011-10-02 18:48:05"), Date.valueOf("2011-10-03 19:48:05")
         );
         roleService.saveRole(role_1);
         roleService.saveRole(role_2);
         // test
         List<Project> projects = service.findProjectsByWorkerInPeriod(roleService, worker_2,
-                Timestamp.valueOf("2011-10-01 18:48:05"), Timestamp.valueOf("2011-10-04 18:48:05"));
+                Date.valueOf("2011-10-01 18:48:05"), Date.valueOf("2011-10-04 18:48:05"));
         int prev_size = projects.size();
         projects.remove(project_2);
         int new_size = projects.size();
@@ -247,23 +247,23 @@ public class ProjectServiceTest {
         // create projects
         ProjectService service = new ProjectService();
         Project project_1 = new Project(
-                "project-1", "description", Timestamp.valueOf("2011-10-02 18:48:05"),
+                "project-1", "description", Date.valueOf("2011-10-02 18:48:05"),
                 null, "active"
         );
         Project project_2 = new Project(
-                "project-2", "description", Timestamp.valueOf("2011-10-02 18:48:05"),
-                Timestamp.valueOf("2011-10-02 18:48:05"), "pause"
+                "project-2", "description", Date.valueOf("2011-10-02 18:48:05"),
+                Date.valueOf("2011-10-02 18:48:05"), "pause"
         );
         service.saveProject(project_1);
         service.saveProject(project_2);
         // create roles
         Role role_1 = new Role(
                 worker_1, project_1, "role-9", "description",
-                Timestamp.valueOf("2011-10-02 18:48:05"), null
+                Date.valueOf("2011-10-02 18:48:05"), null
         );
         Role role_2 = new Role(
                 worker_2, project_2, "role-0", "description",
-                Timestamp.valueOf("2011-10-02 18:48:05"), null
+                Date.valueOf("2011-10-02 18:48:05"), null
         );
         roleService.saveRole(role_1);
         roleService.saveRole(role_2);

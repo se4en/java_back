@@ -46,16 +46,16 @@ public class RoleServiceTest {
         workerService.saveWorker(worker_3);
 
         project_1 = new Project(
-                "project-1", "description", Timestamp.valueOf("2011-10-02 18:48:05"),
-                Timestamp.valueOf("2011-10-02 18:48:05"), "active"
+                "project-1", "description", Date.valueOf("2011-10-02 18:48:05"),
+                Date.valueOf("2011-10-02 18:48:05"), "active"
         );
         project_2 = new Project(
-                "project-2", "description", Timestamp.valueOf("2011-10-02 18:48:05"),
-                Timestamp.valueOf("2011-10-02 18:48:05"), "active"
+                "project-2", "description", Date.valueOf("2011-10-02 18:48:05"),
+                Date.valueOf("2011-10-02 18:48:05"), "active"
         );
         project_3 = new Project(
-                "project-3", "description", Timestamp.valueOf("2011-10-02 18:48:05"),
-                Timestamp.valueOf("2011-10-02 18:48:05"), "active"
+                "project-3", "description", Date.valueOf("2011-10-02 18:48:05"),
+                Date.valueOf("2011-10-02 18:48:05"), "active"
         );
         projectService.saveProject(project_1);
         projectService.saveProject(project_2);
@@ -77,7 +77,7 @@ public class RoleServiceTest {
         RoleService service = new RoleService();
         Role role = new Role(
                 worker_1, project_1, "role-1", "description",
-                Timestamp.valueOf("2011-10-02 18:48:05"), Timestamp.valueOf("2011-10-02 19:48:05")
+                Date.valueOf("2011-10-02 18:48:05"), Date.valueOf("2011-10-02 19:48:05")
         );
 
         // test save-find
@@ -94,7 +94,7 @@ public class RoleServiceTest {
         RoleService service = new RoleService();
         Role role = new Role(
                 worker_1, project_1, "role-4", "description",
-                Timestamp.valueOf("2011-10-02 18:48:05"), Timestamp.valueOf("2011-10-02 19:48:05")
+                Date.valueOf("2011-10-02 18:48:05"), Date.valueOf("2011-10-02 19:48:05")
         );
 
         // test delete by id
@@ -112,7 +112,7 @@ public class RoleServiceTest {
         RoleService service = new RoleService();
         Role role = new Role(
                 worker_1, project_1, "role-1", "description",
-                Timestamp.valueOf("2011-10-02 18:48:05"), Timestamp.valueOf("2011-10-02 19:48:05")
+                Date.valueOf("2011-10-02 18:48:05"), Date.valueOf("2011-10-02 19:48:05")
         );
 
         // test save-update
@@ -131,15 +131,15 @@ public class RoleServiceTest {
         RoleService service = new RoleService();
         Role role_1 = new Role(
                 worker_1, project_1, "role-1", "description",
-                Timestamp.valueOf("2011-10-02 18:48:05"), Timestamp.valueOf("2011-10-02 19:48:05")
+                Date.valueOf("2011-10-02 18:48:05"), Date.valueOf("2011-10-02 19:48:05")
         );
         Role role_2 = new Role(
                 worker_2, project_2, "role-2", "description",
-                Timestamp.valueOf("2011-10-02 18:48:05"), Timestamp.valueOf("2011-10-02 19:48:05")
+                Date.valueOf("2011-10-02 18:48:05"), Date.valueOf("2011-10-02 19:48:05")
         );
         Role role_3 = new Role(
                 worker_3, project_3, "role-3", "description",
-                Timestamp.valueOf("2011-10-02 18:48:05"), Timestamp.valueOf("2011-10-02 19:48:05")
+                Date.valueOf("2011-10-02 18:48:05"), Date.valueOf("2011-10-02 19:48:05")
         );
         service.saveRole(role_1);
         service.saveRole(role_2);
@@ -161,11 +161,11 @@ public class RoleServiceTest {
         RoleService service = new RoleService();
         Role role_1 = new Role(
                 worker_1, project_1, "role-3", "description",
-                Timestamp.valueOf("2011-10-02 18:48:05"), Timestamp.valueOf("2011-10-02 19:48:05")
+                Date.valueOf("2011-10-02 18:48:05"), Date.valueOf("2011-10-02 19:48:05")
         );
         Role role_2 = new Role(
                 worker_1, project_2, "role-4", "description",
-                Timestamp.valueOf("2011-10-02 18:48:05"), Timestamp.valueOf("2011-10-02 19:48:05")
+                Date.valueOf("2011-10-02 18:48:05"), Date.valueOf("2011-10-02 19:48:05")
         );
         service.saveRole(role_1);
         service.saveRole(role_2);
@@ -184,11 +184,11 @@ public class RoleServiceTest {
         RoleService service = new RoleService();
         Role role_1 = new Role(
                 worker_1, project_2, "role-5", "description",
-                Timestamp.valueOf("2011-10-02 18:48:05"), Timestamp.valueOf("2011-10-02 19:48:05")
+                Date.valueOf("2011-10-02 18:48:05"), Date.valueOf("2011-10-02 19:48:05")
         );
         Role role_2 = new Role(
                 worker_2, project_2, "role-6", "description",
-                Timestamp.valueOf("2011-10-02 18:48:05"), Timestamp.valueOf("2011-10-02 19:48:05")
+                Date.valueOf("2011-10-02 18:48:05"), Date.valueOf("2011-10-02 19:48:05")
         );
         service.saveRole(role_1);
         service.saveRole(role_2);
@@ -207,22 +207,22 @@ public class RoleServiceTest {
         RoleService service = new RoleService();
         Role role_1 = new Role(
                 worker_1, project_2, "role-5", "description",
-                Timestamp.valueOf("2011-10-02 18:48:05"), null
+                Date.valueOf("2011-10-02 18:48:05"), null
         );
         Role role_2 = new Role(
                 worker_2, project_3, "role-6", "description",
-                Timestamp.valueOf("2011-10-02 18:48:05"), Timestamp.valueOf("2011-10-02 18:47:05")
+                Date.valueOf("2011-10-02 18:48:05"), Date.valueOf("2011-10-02 18:47:05")
         );
         service.saveRole(role_1);
         service.saveRole(role_2);
         // test right close
-        Assert.assertTrue(service.closeRolesByProject(project_2, Timestamp.valueOf("2011-10-02 18:48:05")));
+        Assert.assertTrue(service.closeRolesByProject(project_2, Date.valueOf("2011-10-02 18:48:05")));
         // test fake close
-        Assert.assertFalse(service.closeRolesByProject(project_3, Timestamp.valueOf("2011-10-02 18:48:05")));
+        Assert.assertFalse(service.closeRolesByProject(project_3, Date.valueOf("2011-10-02 18:48:05")));
         // test role after right close
-        Assert.assertEquals(service.findRole(role_1.getId()).getEnd_date(), Timestamp.valueOf("2011-10-02 18:48:05"));
+        Assert.assertEquals(service.findRole(role_1.getId()).getEnd_date(), Date.valueOf("2011-10-02 18:48:05"));
         // test role after fake close
-        Assert.assertEquals(service.findRole(role_2.getId()).getEnd_date(), Timestamp.valueOf("2011-10-02 18:47:05"));
+        Assert.assertEquals(service.findRole(role_2.getId()).getEnd_date(), Date.valueOf("2011-10-02 18:47:05"));
         service.deleteRole(role_1);
         service.deleteRole(role_2);
     }

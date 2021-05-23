@@ -58,11 +58,11 @@ public class RoleService {
     /*
     Close all roles in project
      */
-    public boolean closeRolesByProject(Project project, java.sql.Timestamp ts) {
+    public boolean closeRolesByProject(Project project, java.sql.Date date) {
         List<Role> roles = findRolesByProject(project);
         for (Role role : roles) {
             if (role.getEnd_date()==null) {
-                role.setEnd_date(ts);
+                role.setEnd_date(date);
                 updateRole(role);
                 return true;
             }

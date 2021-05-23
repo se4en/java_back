@@ -23,19 +23,19 @@ INSERT INTO projects
     ('Mobiel app', 'Online auio meeting app', '2021-02-14', '2022-01-01', 'In development');
 
 INSERT INTO payments
-(work_id, type, date_time, amount) VALUES
-    (1, 'Salary', '2020-12-15 12:00+0', '100000'),
-    (2, 'For successful project', '2020-12-15 12:00+0', '100000'),
-    (3, 'For the length of service', '2020-12-15 12:00+0', '5000'),
-    (4, 'New Year bonus', '2020-12-15 12:00+0', '6000'),
-    (5, 'Birthday bonus', '2020-12-15 12:00+0', '10000'),
-    (6, 'Company birthday bonus', '2020-12-15 12:00+0', '15000');
+(work_id, type, date, amount) VALUES
+    (1, 'Salary', '2020-12-15', '100000'),
+    (2, 'For successful project', '2020-12-15', '100000'),
+    (3, 'For the length of service', '2020-12-15', '5000'),
+    (4, 'New Year bonus', '2020-12-15', '6000'),
+    (5, 'Birthday bonus', '2020-12-15', '10000'),
+    (6, 'Company birthday bonus', '2020-12-15', '15000');
 
 INSERT INTO roles
 (work_id, proj_id, role, description, start_date, end_date) VALUES
-    (1, 5, 'Director', 'Lead team', '2020-12-01 09:00+0', '2020-12-01 09:00+0'),
-    (2, 4, 'Web-designer', 'Create design','2020-12-15 18:00+0', NULL),
-    (3, 3, 'Architect', 'Build backend', '2020-12-15 08:00+0', '2021-02-01 09:00+0'),
-    (4, 2, 'Analyst', 'Analyze the market', '2020-12-15 12:00+0', NULL),
-    (5, 1, 'Product manager', 'Promote the product', '2020-12-28 12:00+0', NULL),
-    (6, 5, 'Programmer', 'Code frontend', '2020-12-15 12:00+0', '2021-01-15 15:00+0');
+    (1, 5, 'Director', 'Lead team', '2020-12-01', '2020-12-01'),
+    (2, 4, 'Web-designer', 'Create design','2020-12-15', NULL),
+    (3, 3, 'Architect', 'Build backend', '2020-12-15', '2021-02-01'),
+    (4, 2, 'Analyst', 'Analyze the market', '2020-12-15', NULL),
+    (5, 1, 'Product manager', 'Promote the product', '2020-12-28', NULL),
+    (6, 5, 'Programmer', 'Code frontend', '2020-12-15', '2021-01-15');

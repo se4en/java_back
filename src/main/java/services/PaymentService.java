@@ -62,7 +62,7 @@ public class PaymentService {
     /*
      Return all payments for worker in a given time period
      */
-    public List<Payment> findPaymentsByWorkerInPeriod(Worker worker, java.sql.Timestamp start_date, java.sql.Timestamp end_date) {
+    public List<Payment> findPaymentsByWorkerInPeriod(Worker worker, java.sql.Date start_date, java.sql.Date end_date) {
         List<Payment> payments = findPaymentsByWorker(worker);
         payments.removeIf(payment -> (payment.getDate_time().before(start_date) | payment.getDate_time().after(end_date)));
         return payments;
@@ -71,7 +71,7 @@ public class PaymentService {
     /*
      Return total amount of payments for worker in the time period
      */
-    public long getCostsByWorkerInPeriod(Worker worker, java.sql.Timestamp start_date, java.sql.Timestamp end_date) {
+    public long getCostsByWorkerInPeriod(Worker worker, java.sql.Date start_date, java.sql.Date end_date) {
         long result = 0;
         for (Payment payment : findPaymentsByWorkerInPeriod(worker, start_date, end_date)) {
             result += payment.getAmount();
@@ -82,7 +82,7 @@ public class PaymentService {
     /*
      Return all payments in a given time period
      */
-    public List<Payment> findPaymentsInPeriod(java.sql.Timestamp start_date, java.sql.Timestamp end_date) {
+    public List<Payment> findPaymentsInPeriod(java.sql.Date start_date, java.sql.Date end_date) {
         List<Payment> payments = findAllPayments();
         payments.removeIf(payment -> (payment.getDate_time().before(start_date) | payment.getDate_time().after(end_date)));
         return payments;
@@ -91,7 +91,7 @@ public class PaymentService {
     /*
      Return total amount of payments in the time period
      */
-    public long getCostsInPeriod(java.sql.Timestamp start_date, java.sql.Timestamp end_date) {
+    public long getCostsInPeriod(java.sql.Date start_date, java.sql.Date end_date) {
         long result = 0;
         for (Payment payment : findPaymentsInPeriod(start_date, end_date)) {
             result += payment.getAmount();

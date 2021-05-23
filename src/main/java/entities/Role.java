@@ -1,6 +1,7 @@
 package entities;
 
 import javax.persistence.*;
+import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.Objects;
 
@@ -13,23 +14,25 @@ public class Role {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @ManyToOne(fetch=FetchType.EAGER)
+    //@ManyToOne(fetch=FetchType.EAGER)
+    @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name = "work_id")
     private Worker worker;
 
-    @ManyToOne(fetch=FetchType.EAGER)
+    //@ManyToOne(fetch=FetchType.EAGER)
+    @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name = "proj_id")
     private Project project;
 
     private String role;
     private String description;
-    private java.sql.Timestamp start_date;
-    private java.sql.Timestamp end_date;
+    private java.sql.Date start_date;
+    private java.sql.Date end_date;
 
     public Role() {}
 
     public Role(Worker worker, Project project, String role,
-                String description, Timestamp start_date, Timestamp end_date) {
+                String description, Date start_date, Date end_date) {
         this.worker = worker;
         this.project = project;
         this.role = role;
@@ -74,19 +77,19 @@ public class Role {
         this.description = description;
     }
 
-    public Timestamp getStart_date() {
+    public Date getStart_date() {
         return start_date;
     }
 
-    public void setStart_date(Timestamp start_date) {
+    public void setStart_date(Date start_date) {
         this.start_date = start_date;
     }
 
-    public Timestamp getEnd_date() {
+    public Date getEnd_date() {
         return end_date;
     }
 
-    public void setEnd_date(Timestamp end_date) {
+    public void setEnd_date(Date end_date) {
         this.end_date = end_date;
     }
 

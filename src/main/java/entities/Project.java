@@ -1,6 +1,9 @@
 package entities;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
+import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.Objects;
 
@@ -15,14 +18,16 @@ public class Project {
 
     private String title;
     private String description;
-    private java.sql.Timestamp start_date;
-    private java.sql.Timestamp end_date;
+    //@DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss")
+    private java.sql.Date start_date;
+    //@DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss")
+    private java.sql.Date end_date;
     private String status;
 
     public Project() {}
 
-    public Project(String title, String description, Timestamp start_date,
-                   Timestamp end_date, String status) {
+    public Project(String title, String description, Date start_date,
+                   Date end_date, String status) {
         this.title = title;
         this.description = description;
         this.start_date = start_date;
@@ -50,19 +55,19 @@ public class Project {
         this.description = description;
     }
 
-    public Timestamp getStart_date() {
+    public Date getStart_date() {
         return start_date;
     }
 
-    public void setStart_date(Timestamp start_date) {
+    public void setStart_date(Date start_date) {
         this.start_date = start_date;
     }
 
-    public Timestamp getEnd_date() {
+    public Date getEnd_date() {
         return end_date;
     }
 
-    public void setEnd_date(Timestamp end_date) {
+    public void setEnd_date(Date end_date) {
         this.end_date = end_date;
     }
 

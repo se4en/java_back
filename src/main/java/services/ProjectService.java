@@ -69,7 +69,7 @@ public class ProjectService {
     /*
      Return all projects in which worker participated in a time period
      */
-    public List<Project> findProjectsByWorkerInPeriod(RoleService roleService, Worker worker, java.sql.Timestamp start_date, java.sql.Timestamp end_date) {
+    public List<Project> findProjectsByWorkerInPeriod(RoleService roleService, Worker worker, java.sql.Date start_date, java.sql.Date end_date) {
         List<Project> projects = findProjectsByWorker(roleService, worker);
         projects.removeIf(project -> (project.getStart_date()!=null && project.getEnd_date()!=null && (project.getStart_date().before(start_date) | project.getEnd_date().after(end_date))));
         return projects;
@@ -93,18 +93,23 @@ public class ProjectService {
         }
         // close project
         // get current timestamp
-        Date date = new Date();
-        long time = date.getTime();
-        Timestamp ts = new Timestamp(time);
+        //Date date = new Date();
+        //Date date = java.time.LocalDate.now().;
+        long millis=System.currentTimeMillis();
+        java.sql.Date date = new java.sql.Date(millis);
+
+        //long time = date.getTime();
+        //Timestamp ts = new Timestamp(time);
+
         if (project.getEnd_date()==null) {
-            project.setEnd_date(ts);
+            project.setEnd_date(date);
         }
         if (!project.getStatus().equals("Closed")) {
             project.setStatus("Closed");
         }
         projectDAO.update(project);
         // close roles
-        return roleService.closeRolesByProject(project, ts);
+        return roleService.closeRolesByProject(project, date);
     }
 
 }

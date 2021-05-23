@@ -17,8 +17,8 @@ CREATE TABLE projects (
     proj_id SERIAL PRIMARY KEY,
     title VARCHAR NOT NULL,
     description TEXT,
-    start_date TIMESTAMP NOT NULL,
-    end_date TIMESTAMP,
+    start_date DATE NOT NULL,
+    end_date DATE,
     status VARCHAR NOT NULL
 );
 
@@ -26,7 +26,7 @@ CREATE TABLE payments (
     paym_id SERIAL PRIMARY KEY,
     work_id INT REFERENCES workers ON DELETE CASCADE NOT NULL,
     type VARCHAR NOT NULL, 
-    date_time TIMESTAMP NOT NULL,
+    date DATE NOT NULL,
     amount BIGINT NOT NULL
 );
 
@@ -36,6 +36,6 @@ CREATE TABLE roles (
     proj_id INT REFERENCES projects ON DELETE CASCADE NOT NULL,
     role VARCHAR NOT NULL,
     description TEXT, 
-    start_date TIMESTAMP NOT NULL,
-    end_date TIMESTAMP
+    start_date DATE NOT NULL,
+    end_date DATE
 );

@@ -11,7 +11,7 @@
 <div class="container">
     <h1>Update project</h1>
 
-    <form action="#" th:action="'/project/save'" th:object="${project}"
+    <form action="#" th:action="'/project/update'" th:object="${project}"
           method="POST">
 
         <!-- Add hidden form field to handle update -->
@@ -21,9 +21,9 @@
 
         <input type="text" th:field="*{status}" class="form-control mb-4 col-4">
 
-        <input type="text" th:field="*{start_date}" class="form-control mb-4 col-4">
+        <input type="datetime-local" th:field="*{start_date}" class="form-control mb-4 col-4">
 
-        <input type="text" th:field="*{end_date}" class="form-control mb-4 col-4">
+        <input type="datetime-local" th:field="*{end_date}" class="form-control mb-4 col-4">
 
         <input type="text" th:field="*{description}" class="form-control mb-4 col-4">
 

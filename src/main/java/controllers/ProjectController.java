@@ -57,4 +57,9 @@ public class ProjectController {
         return "project/update";
     }
 
+    @PostMapping("/update")
+    public String saveAfterUpdateProject(@ModelAttribute("project") Project project) {
+        projectService.updateProject(project);
+        return "redirect:/project/all";
+    }
 }
