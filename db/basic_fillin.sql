@@ -15,12 +15,12 @@ address, first_day, last_day, post, salary) VALUES
      'MOSCOW, Shosse Entuziastov, 102, 8', '2021-02-03', NULL, 'programmer', '80000');
 
 INSERT INTO projects 
-(title, description, start_date, end_date, status) VALUES
-    ('Chatbot', 'Fantasy helper telegram bot', '2020-12-01', '2021-03-01', 'In development'),
-    ('WEB-site', NULL, '2020-12-01', '2021-01-01', 'Active'),
-    ('WEB-site', 'Fantasy helper web-site', '2020-12-14', '2021-01-31', 'Close'),
-    ('Descktop app', 'School portal', '2021-02-01', NULL, 'Support'),
-    ('Mobiel app', 'Online auio meeting app', '2021-02-14', '2022-01-01', 'In development');
+(title, description, start_date, end_date, status, version) VALUES
+    ('Chatbot', 'Fantasy helper telegram bot', '2020-12-01', '2021-03-01', 'In development', 1),
+    ('WEB-site', NULL, '2020-12-01', '2021-01-01', 'Active', 1),
+    ('WEB-site', 'Fantasy helper web-site', '2020-12-14', '2021-01-31', 'Close', 1),
+    ('Descktop app', 'School portal', '2021-02-01', NULL, 'Support', 1),
+    ('Mobiel app', 'Online auio meeting app', '2021-02-14', '2022-01-01', 'In development', 1);
 
 INSERT INTO payments
 (work_id, type, date, amount) VALUES

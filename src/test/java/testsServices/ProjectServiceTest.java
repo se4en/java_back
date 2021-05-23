@@ -56,8 +56,8 @@ public class ProjectServiceTest {
     public void testSaveFindProject() {
         ProjectService service = new ProjectService();
         Project project = new Project(
-                "project-1", "description", Date.valueOf("2011-10-02 18:48:05"),
-                Date.valueOf("2011-10-02 18:48:05"), "active"
+                "project-1", "description", Date.valueOf("2011-10-02"),
+                Date.valueOf("2011-10-02"), "active"
         );
 
         // test save-find
@@ -73,8 +73,8 @@ public class ProjectServiceTest {
     public void testDeleteProject() {
         ProjectService service = new ProjectService();
         Project project = new Project(
-                "project-1", "description", Date.valueOf("2011-10-02 18:48:05"),
-                Date.valueOf("2011-10-02 18:48:05"), "active"
+                "project-1", "description", Date.valueOf("2011-10-02"),
+                Date.valueOf("2011-10-02"), "active"
         );
 
         // test delete by id
@@ -91,8 +91,8 @@ public class ProjectServiceTest {
     public void testUpdateProject() {
         ProjectService service = new ProjectService();
         Project project = new Project(
-                "project-1", "description", Date.valueOf("2011-10-02 18:48:05"),
-                Date.valueOf("2011-10-02 18:48:05"), "active"
+                "project-1", "description", Date.valueOf("2011-10-02"),
+                Date.valueOf("2011-10-02"), "active"
         );
 
         // test save-update
@@ -247,23 +247,23 @@ public class ProjectServiceTest {
         // create projects
         ProjectService service = new ProjectService();
         Project project_1 = new Project(
-                "project-1", "description", Date.valueOf("2011-10-02 18:48:05"),
+                "project-1", "description", Date.valueOf("2011-10-02"),
                 null, "active"
         );
         Project project_2 = new Project(
-                "project-2", "description", Date.valueOf("2011-10-02 18:48:05"),
-                Date.valueOf("2011-10-02 18:48:05"), "pause"
+                "project-2", "description", Date.valueOf("2011-10-02"),
+                Date.valueOf("2011-10-02"), "pause"
         );
         service.saveProject(project_1);
         service.saveProject(project_2);
         // create roles
         Role role_1 = new Role(
                 worker_1, project_1, "role-9", "description",
-                Date.valueOf("2011-10-02 18:48:05"), null
+                Date.valueOf("2011-10-02"), null
         );
         Role role_2 = new Role(
                 worker_2, project_2, "role-0", "description",
-                Date.valueOf("2011-10-02 18:48:05"), null
+                Date.valueOf("2011-10-02"), null
         );
         roleService.saveRole(role_1);
         roleService.saveRole(role_2);
@@ -278,7 +278,7 @@ public class ProjectServiceTest {
         // test fake close
         Assert.assertTrue(service.closeProject(roleService, project_2));
         // test project
-        Assert.assertEquals(project_2.getEnd_date(), Timestamp.valueOf("2011-10-02 18:48:05"));
+        Assert.assertEquals(project_2.getEnd_date(), Date.valueOf("2011-10-02"));
         Assert.assertEquals(project_2.getStatus(), "Closed");
         // delete
         roleService.deleteRole(role_1);

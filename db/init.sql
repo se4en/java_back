@@ -19,7 +19,8 @@ CREATE TABLE projects (
     description TEXT,
     start_date DATE NOT NULL,
     end_date DATE,
-    status VARCHAR NOT NULL
+    status VARCHAR NOT NULL,
+    version int
 );
 
 CREATE TABLE payments (

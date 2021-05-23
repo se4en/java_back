@@ -45,6 +45,9 @@ public class ProjectController {
 
     @PostMapping("/save")
     public String saveProject(@ModelAttribute("project") Project project) {
+
+        // here
+
         projectService.saveProject(project);
         return "redirect:/project/all";
     }
@@ -59,6 +62,9 @@ public class ProjectController {
 
     @PostMapping("/update")
     public String saveAfterUpdateProject(@ModelAttribute("project") Project project) {
+        System.out.println("Date:");
+        System.out.println(project.getStart_date());
+
         projectService.updateProject(project);
         return "redirect:/project/all";
     }

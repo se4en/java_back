@@ -24,6 +24,10 @@ public class Project {
     private java.sql.Date end_date;
     private String status;
 
+    @Version
+    private int version = 1;
+
+
     public Project() {}
 
     public Project(String title, String description, Date start_date,
