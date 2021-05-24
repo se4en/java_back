@@ -24,7 +24,7 @@ public class ProjectController {
 
     @GetMapping("/all")
     public String projectListPage(Model model) {
-        List<Project> projects = projectService.findAllProjects();  // todo load not all films
+        List<Project> projects = projectService.findAllProjects();
         model.addAttribute("projects", projects);
         return "project/all";
     }
