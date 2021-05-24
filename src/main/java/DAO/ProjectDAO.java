@@ -11,7 +11,10 @@ import java.util.List;
 public class ProjectDAO {
 
     public Project findById(long id) {
-        return HibernateSessionFactoryUtil.getSessionFactory().openSession().get(Project.class, id);
+        Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
+        Project project = session.get(Project.class, id);
+        session.close();
+        return project;
     }
 
     public void save(Project project) {
