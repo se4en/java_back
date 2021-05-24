@@ -44,7 +44,19 @@ public class ProjectController {
     }
 
     @PostMapping("/save")
-    public String saveProject(@ModelAttribute("project") Project project) {
+    public String saveProject(@RequestParam(name = "p_id", required = false) Long project_id,
+                               @RequestParam(name = "p_title") String p_title,
+                               @RequestParam(name = "p_start_date") Date p_start_date,
+                               @RequestParam(name = "p_end_date") Date p_end_date,
+                               @RequestParam(name = "p_status") String p_status,
+                               @RequestParam(name = "p_description") String p_description,
+                               Model model) {
+        Project project = new Project();
+        project.setTitle(p_title);
+        project.setStart_date(p_start_date);
+        project.setEnd_date(p_end_date);
+        project.setStatus(p_status);
+        project.setDescription(p_description);
         projectService.saveProject(project);
         return "redirect:/project/all";
     }
