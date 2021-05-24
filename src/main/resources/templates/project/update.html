@@ -25,7 +25,7 @@
 
         <label for="p_end_date">End date:</label>
         <input type="text" id="p_end_date" name="p_end_date" placeholder="YYYY-MM-DD"
-               required th:value="${project.getEnd_date()}"><br><br>
+               th:value="${project.getEnd_date()}"><br><br>
 
         <label for="p_status">Status:</label>
         <input type="text" id="p_status" name="p_status" placeholder="Project status"
@@ -33,7 +33,7 @@
 
         <label for="p_description">Description:</label>
         <input type="text" id="p_description" name="p_description" placeholder="Project Description"
-               required th:value="${project.getDescription()}"><br><br>
+               th:value="${project.getDescription()}"><br><br>
 
         <button type="submit" class="btn btn-info col-2"> Update project</button>
     </form>

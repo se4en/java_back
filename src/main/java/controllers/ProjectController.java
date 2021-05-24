@@ -81,21 +81,42 @@ public class ProjectController {
     @PostMapping("/update")
     public String saveAfterUpdateProject(@RequestParam(name = "p_id", required = false) Long project_id,
                                          @RequestParam(name = "p_title") String p_title,
-                                         @RequestParam(name = "p_start_date") Date p_start_date,
-                                         @RequestParam(name = "p_end_date") Date p_end_date,
+                                         @RequestParam(name = "p_start_date") String p_start_date,
+                                         @RequestParam(name = "p_end_date") String p_end_date,
                                          @RequestParam(name = "p_status") String p_status,
                                          @RequestParam(name = "p_description") String p_description,
                                          Model model) {
         Project project = projectService.findProject(project_id);
+        // check id
+        if (project == null) {
+            model.addAttribute("error_msg", "There is no project with id=" + project);
+            return "error";
+        }
+        System.out.println("OK");
+        System.out.println(p_start_date);
+        // check start date
+        if (p_start_date != null) {
+            try {
+                Date start_date = Date.valueOf(p_start_date);
+                project.setStart_date(start_date);
+            } catch (Exception e) {
+                model.addAttribute("link", "/project/all");
+                model.addAttribute("error_msg", "Incorrect date format: " + p_start_date);
+                return "error";
+            }
+        }
+        System.out.println("OK_2");
+
         if (project != null) {
             project.setTitle(p_title);
-            project.setStart_date(p_start_date);
-            project.setEnd_date(p_end_date);
+            //project.setStart_date(p_start_date);
+            //project.setEnd_date(p_end_date);
             project.setStatus(p_status);
             project.setDescription(p_description);
 
             projectService.updateProject(project);
         }
+        System.out.println("OK_3");
         return "redirect:/project/all";
     }
 }
