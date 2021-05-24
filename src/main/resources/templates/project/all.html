@@ -71,6 +71,9 @@
             <td><span th:text="${project.getDescription()}"> </span>
             </td><td> <a th:href="@{update/{id}(id=${project.getId()})}" class="btn btn-primary">Update</a>
             <a th:href="@{delete/{id}(id=${project.getId()})}" class="btn btn-danger">Delete</a>
+            <span th:if="${project.getEnd_date() == null}">
+                <a th:href="@{close/{id}(id=${project.getId()})}" class="btn btn-success">Close</a>
+            </span>
         </td>
         </tr>
 

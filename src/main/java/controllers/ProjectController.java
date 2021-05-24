@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import services.ProjectService;
+import services.RoleService;
 
 import java.sql.Date;
 
@@ -21,6 +22,7 @@ import java.util.List;
 @RequestMapping("/project")
 public class ProjectController {
     ProjectService projectService = new ProjectService();
+    RoleService roleService = new RoleService();
 
     @GetMapping("/all")
     public String projectListPage(Model model) {
@@ -33,6 +35,13 @@ public class ProjectController {
     public String deleteProject(@PathVariable(value = "id") long id) {
 
         projectService.deleteProjectById(id);
+        return "redirect:/project/all";
+    }
+
+    @GetMapping("/close/{id}")
+    public String closeProject(@PathVariable(value = "id") long id) {
+        Project project = projectService.findProject(id);
+        projectService.closeProject(roleService, project);
         return "redirect:/project/all";
     }
 
