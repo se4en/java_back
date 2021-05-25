@@ -14,13 +14,13 @@ public class Role {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    //@ManyToOne(fetch=FetchType.EAGER)
-    @ManyToOne(fetch=FetchType.LAZY)
+    @ManyToOne(fetch=FetchType.EAGER)
+    //@ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name = "work_id")
     private Worker worker;
 
-    //@ManyToOne(fetch=FetchType.EAGER)
-    @ManyToOne(fetch=FetchType.LAZY)
+    @ManyToOne(fetch=FetchType.EAGER)
+    //@ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name = "proj_id")
     private Project project;
 

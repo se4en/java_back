@@ -74,8 +74,6 @@ public class WorkerController {
                 Date birthdate = Date.valueOf(w_birthdate);
                 worker.setBirthdate(birthdate);
             } catch (Exception e) {
-                System.out.println("Exception:");
-                System.out.println(e);
                 model.addAttribute("link", "/worker/all");
                 model.addAttribute("error_msg", "Incorrect date format: " + w_birthdate);
                 return "error";
@@ -87,8 +85,6 @@ public class WorkerController {
                 Date first_day = Date.valueOf(w_first_day);
                 worker.setFirst_day(first_day);
             } catch (Exception e) {
-                System.out.println("Exception:");
-                System.out.println(e);
                 model.addAttribute("link", "/worker/all");
                 model.addAttribute("error_msg", "Incorrect date format: " + w_first_day);
                 return "error";
@@ -100,8 +96,6 @@ public class WorkerController {
                 Date last_day = Date.valueOf(w_last_day);
                 worker.setLast_day(last_day);
             } catch (Exception e) {
-                System.out.println("Exception:");
-                System.out.println(e);
                 model.addAttribute("link", "/worker/all");
                 model.addAttribute("error_msg", "Incorrect date format: " + w_last_day);
                 return "error";
@@ -141,8 +135,6 @@ public class WorkerController {
                 int salary = Integer.parseInt(w_salary);
                 worker.setSalary(salary);
             } catch (Exception e) {
-                System.out.println("Exception:");
-                System.out.println(e);
                 model.addAttribute("link", "/worker/all");
                 model.addAttribute("error_msg", "Incorrect salary format: " + w_salary);
                 return "error";
@@ -181,8 +173,6 @@ public class WorkerController {
                 Date birthdate = Date.valueOf(w_birthdate);
                 worker.setBirthdate(birthdate);
             } catch (Exception e) {
-                System.out.println("Exception:");
-                System.out.println(e);
                 model.addAttribute("link", "/worker/all");
                 model.addAttribute("error_msg", "Incorrect date format: " + w_birthdate);
                 return "error";
@@ -194,8 +184,6 @@ public class WorkerController {
                 Date first_day = Date.valueOf(w_first_day);
                 worker.setFirst_day(first_day);
             } catch (Exception e) {
-                System.out.println("Exception:");
-                System.out.println(e);
                 model.addAttribute("link", "/worker/all");
                 model.addAttribute("error_msg", "Incorrect date format: " + w_first_day);
                 return "error";
@@ -207,8 +195,6 @@ public class WorkerController {
                 Date last_day = Date.valueOf(w_last_day);
                 worker.setLast_day(last_day);
             } catch (Exception e) {
-                System.out.println("Exception:");
-                System.out.println(e);
                 model.addAttribute("link", "/worker/all");
                 model.addAttribute("error_msg", "Incorrect date format: " + w_last_day);
                 return "error";
@@ -248,8 +234,6 @@ public class WorkerController {
                 int salary = Integer.parseInt(w_salary);
                 worker.setSalary(salary);
             } catch (Exception e) {
-                System.out.println("Exception:");
-                System.out.println(e);
                 model.addAttribute("link", "/worker/all");
                 model.addAttribute("error_msg", "Incorrect salary format: " + w_salary);
                 return "error";

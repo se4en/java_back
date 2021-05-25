@@ -67,8 +67,6 @@ public class ProjectController {
                 Date start_date = Date.valueOf(p_start_date);
                 project.setStart_date(start_date);
             } catch (Exception e) {
-                System.out.println("Exception:");
-                System.out.println(e);
                 model.addAttribute("link", "/project/all");
                 model.addAttribute("error_msg", "Incorrect date format: " + p_start_date);
                 return "error";
