@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:form="http://www.w3.org/1999/html">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Update worker</title>
+
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <h1>Update worker</h1>
+
+    <form action="/worker/update" method="post">
+        <!-- Add hidden form field to handle update -->
+        <input type="hidden" name="w_id" required th:value="${worker.getId()}"/>
+
+        <label for="w_name">Name:</label>
+        <input type="text" id="w_name" name="w_name" placeholder="Worker name"
+               required th:value="${worker.getName()}"><br><br>
+
+        <label for="w_sername">Sername:</label>
+        <input type="text" id="w_sername" name="w_sername" placeholder="Worker sername"
+               required th:value="${worker.getSername()}"><br><br>
+
+        <label for="w_patronymic">Patronymic:</label>
+        <input type="text" id="w_patronymic" name="w_patronymic" placeholder="Worker patronymic"
+               required th:value="${worker.getPatronymic()}"><br><br>
+
+        <label for="w_birthdate">Birthdate:</label>
+        <input type="text" id="w_birthdate" name="w_birthdate" placeholder="Worker birthdate"
+               required th:value="${worker.getBirthdate()}"><br><br>
+
+        <label for="w_phone">Phone:</label>
+        <input type="text" id="w_phone" name="w_phone" placeholder="Worker phone"
+               required th:value="${worker.getPhone()}"><br><br>
+
+        <label for="w_email">Email:</label>
+        <input type="text" id="w_email" name="w_email" placeholder="Worker email"
+               required th:value="${worker.getEmail()}"><br><br>
+
+        <label for="w_address">Address:</label>
+        <input type="text" id="w_address" name="w_address" placeholder="Worker address"
+               required th:value="${worker.getAddress()}"><br><br>
+
+        <label for="w_first_day">First day:</label>
+        <input type="text" id="w_first_day" name="w_first_day" placeholder="YYYY-MM-DD"
+               required th:value="${worker.getFirst_day()}"><br><br>
+
+        <label for="w_last_day">Last day:</label>
+        <input type="text" id="w_last_day" name="w_last_day" placeholder="YYYY-MM-DD"
+               th:value="${worker.getLast_day()}"><br><br>
+
+        <label for="w_post">Post:</label>
+        <input type="text" id="w_post" name="w_post" placeholder="Worker post"
+               required th:value="${worker.getPost()}"><br><br>
+
+        <label for="w_salary">Salary:</label>
+        <input type="text" id="w_salary" name="w_salary" placeholder="Worker salary"
+               required th:value="${worker.getSalary()}"><br><br>
+
+        <button type="submit" class="btn btn-info col-2"> Update worker</button>
+    </form>
+
+    <hr>
+
+    <a th:href = "'/worker/all'"> Back to workers list</a>
+
+</div>
+</body>
+</html>

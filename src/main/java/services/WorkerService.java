@@ -64,7 +64,7 @@ public class WorkerService {
             Date utilDate = new Date();
             java.sql.Date date = new java.sql.Date(utilDate.getTime());
             worker.setLast_day(date);
-            saveWorker(worker);
+            updateWorker(worker);
             return true;
         }
     }
