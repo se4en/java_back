@@ -78,8 +78,9 @@
             </td><td> <a th:href="@{info/{id}(id=${worker.getId()})}" class="btn btn-success">Info</a>
             <a th:href="@{update/{id}(id=${worker.getId()})}" class="btn btn-primary">Update</a>
             <a th:href="@{delete/{id}(id=${worker.getId()})}" class="btn btn-danger">Delete</a>
+            <a th:href="@{role/{id}(id=${worker.getId()})}" class="btn btn-success">New role</a>
             <span th:if="${worker.getLast_day() == null}">
-                <a th:href="@{dismiss/{id}(id=${worker.getId()})}" class="btn btn-success">Dismiss</a>
+                <a th:href="@{dismiss/{id}(id=${worker.getId()})}" class="btn btn-primary">Dismiss</a>
             </span>
         </td>
         </tr>

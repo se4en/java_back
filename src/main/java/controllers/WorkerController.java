@@ -68,6 +68,97 @@ public class WorkerController {
         return "worker/info";
     }
 
+    @GetMapping("/role/{id}")
+    public String createRolePage(@PathVariable(value = "id") long id, Model model) {
+        Worker worker = workerService.findWorker(id);
+        model.addAttribute("worker", worker);
+
+        Role role = new Role();
+        model.addAttribute("role", role);
+
+        List<Project> projects = projectService.findAllProjects();
+        model.addAttribute("projects", projects);
+        return "worker/role";
+    }
+
+    @PostMapping("/saverole")
+    public String saveRoleWorker(@RequestParam(name = "r_id", required = false) Long r_id,
+                             @RequestParam(name = "r_w_id") Long r_w_id,
+                             @RequestParam(name = "r_project", required = false) int r_project,
+                             @RequestParam(name = "r_role") String r_role,
+                             @RequestParam(name = "r_description") String r_description,
+                             @RequestParam(name = "r_start_date") String r_start_date,
+                             @RequestParam(name = "r_end_date") String r_end_date,
+                             Model model) {
+        Role role = new Role();
+        // check end date
+        if (r_start_date != "") {
+            try {
+                Date start_date = Date.valueOf(r_start_date);
+                role.setStart_date(start_date);
+            } catch (Exception e) {
+                model.addAttribute("link", "/worker/all");
+                model.addAttribute("error_msg", "Incorrect date format: " + r_start_date);
+                return "error";
+            }
+        }
+        // check end date
+        if (r_project > 0) {
+            try {
+                Date end_date = Date.valueOf(r_end_date);
+                role.setEnd_date(end_date);
+            } catch (Exception e) {
+                model.addAttribute("link", "/worker/all");
+                model.addAttribute("error_msg", "Incorrect date format: " + r_end_date);
+                return "error";
+            }
+        }
+        // check worker
+        if (r_project > 0) {
+            try {
+                Project project = projectService.findProject(r_project);
+                if (project != null) {
+                    role.setProject(project);
+                } else {
+                    model.addAttribute("link", "/worker/all");
+                    model.addAttribute("error_msg", "Incorrect project: " + r_project);
+                    return "error";
+                }
+            } catch (Exception e) {
+                model.addAttribute("link", "/worker/all");
+                model.addAttribute("error_msg", "Incorrect project: " + r_project);
+                return "error";
+            }
+        }
+        // check worker
+        if (r_w_id > 0) {
+            try {
+                Worker ok_worker = workerService.findWorker(r_w_id);
+                if (ok_worker != null) {
+                    role.setWorker(ok_worker);
+                } else {
+                    model.addAttribute("link", "/worker/all");
+                    model.addAttribute("error_msg", "Incorrect worker: " + r_w_id);
+                    return "error";
+                }
+            } catch (Exception e) {
+                model.addAttribute("link", "/worker/all");
+                model.addAttribute("error_msg", "Incorrect project: " + r_w_id);
+                return "error";
+            }
+        }
+        // check name
+        if (r_description != "") {
+            role.setDescription(r_description);
+        }
+        // check sername
+        if (r_role != "") {
+            role.setRole(r_role);
+        }
+        roleService.saveRole(role);
+        return "redirect:/worker/all";
+    }
+
     @GetMapping("/new")
     public String newWorker(Model model) {
         Worker worker = new Worker();
