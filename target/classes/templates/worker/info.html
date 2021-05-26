@@ -59,6 +59,8 @@
         <p th:text="'Worker salary: ' + ${worker.getSalary()}"></p>
     </div>
 
+    <p>Roles:</p>
+
     <table id="workerRolesPage">
         <thead>
         <tr>
@@ -93,6 +95,62 @@
             <td><span th:text="${role.getEnd_date()}"> </span></td>
 
 
+        </tr>
+        </tbody>
+    </table>
+
+    <p>Projects:</p>
+
+    <table id="workerProjectPage">
+        <thead>
+        <tr>
+            <th> Title</th>
+            <th> Description</th>
+            <th> Start date</th>
+            <th> End date</th>
+            <th> Status</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:if="${projects.empty}">
+            <td colspan="6"> No projects here</td>
+        </tr>
+        <tr th:each="project : ${projects}">
+
+            <td><span th:text="${project.getTitle()}"> </span></td>
+
+            <td><span th:text="${project.getDescription()}"> </span></td>
+
+            <td><span th:text="${project.getStart_date()}"> </span></td>
+
+            <td><span th:text="${project.getEnd_date()}"> </span></td>
+
+            <td><span th:text="${project.getStatus()}"> </span></td>
+        </tr>
+        </tbody>
+    </table>
+
+    <p>Payments:</p>
+
+    <table id="workerPaymentsPage">
+        <thead>
+        <tr>
+            <th> Type</th>
+            <th> Date</th>
+            <th> Amount</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:if="${payments.empty}">
+            <td colspan="6"> No payments here</td>
+        </tr>
+        <tr th:each="payment : ${payments}">
+
+            <td><span th:text="${payment.getType()}"> </span></td>
+
+            <td><span th:text="${payment.getDate_time()}"> </span></td>
+
+            <td><span th:text="${payment.getAmount()}"> </span></td>
         </tr>
         </tbody>
     </table>
