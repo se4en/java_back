@@ -10,38 +10,39 @@
 </head>
 <body>
 <div class="container">
-    <h1>Create project</h1>
+    <h1>Create payment</h1>
 
-    <form action="/project/save" method="post">
+    <form action="/payment/save" method="post">
         <!-- Add hidden form field to handle update -->
-        <input type="hidden" name="p_id" required th:value="${project.getId()}"/>
+        <input type="hidden" name="p_id" required th:value="${payment.getId()}"/>
 
-        <label for="p_title">Title:</label>
-        <input type="text" id="p_title" name="p_title" placeholder="Project title"
-               required th:value="${project.getTitle()}"><br><br>
+        <label for="p_worker">Choose a worker:</label><br>
+        <select id="p_worker" name="p_worker" size="6" required>
+            <option th:each="worker : ${workers}"
+                    th:value="${worker.getId()}"
+                    th:text="${worker.getName()} + ' ' + ${worker.getSername()}">
+            </option>
+        </select>
+        <br><br>
 
-        <label for="p_start_date">Start date:</label>
-        <input type="text" id="p_start_date" name="p_start_date" placeholder="YYYY-MM-DD"
-               required th:value="${project.getStart_date()}"><br><br>
+        <label for="p_type">Type:</label>
+        <input type="text" id="p_type" name="p_type" placeholder="Payment type"
+               required th:value="${payment.getType()}"><br><br>
 
-        <label for="p_end_date">End date:</label>
-        <input type="text" id="p_end_date" name="p_end_date" placeholder="YYYY-MM-DD"
-               th:value="${project.getEnd_date()}"><br><br>
+        <label for="p_date">Date:</label>
+        <input type="text" id="p_date" name="p_date" placeholder="YYYY-MM-DD"
+               th:value="${payment.getDate_time()}"><br><br>
 
-        <label for="p_status">Status:</label>
-        <input type="text" id="p_status" name="p_status" placeholder="Project status"
-               required th:value="${project.getStatus()}"><br><br>
+        <label for="p_amount">Amount:</label>
+        <input type="text" id="p_amount" name="p_amount" placeholder="Payment amount"
+               required th:value="${payment.getAmount()}"><br><br>
 
-        <label for="p_description">Description:</label>
-        <input type="text" id="p_description" name="p_description" placeholder="Project Description"
-               th:value="${project.getDescription()}"><br><br>
-
-        <button type="submit" class="btn btn-info col-2"> Save project</button>
+        <button type="submit" class="btn btn-info col-2"> Save payment</button>
     </form>
 
     <hr>
 
-    <a th:href = "'/project/all'"> Back to projects list</a>
+    <a th:href = "'/payment/all'"> Back to payments list</a>
 </div>
 </body>
 </html>

@@ -45,12 +45,14 @@ public class PaymentController {
     public String newPayment(Model model) {
         Payment payment = new Payment();
         model.addAttribute("payment", payment);
+        List<Worker> workers = workerService.findAllWorkers();
+        model.addAttribute("workers", workers);
         return "payment/new";
     }
 
     @PostMapping("/save")
     public String savePayment(@RequestParam(name = "p_id", required = false) Long p_id,
-                              @RequestParam(name = "p_worker", required = false) Worker p_worker,
+                              @RequestParam(name = "p_worker", required = false) int p_worker,
                               @RequestParam(name = "p_type") String p_type,
                               @RequestParam(name = "p_date") String p_date,
                               @RequestParam(name = "p_amount") String p_amount,
@@ -68,19 +70,19 @@ public class PaymentController {
             }
         }
         // check worker
-        if (p_worker != null) {
+        if (p_worker > 0) {
             try {
-                Worker ok_worker = workerService.findWorker(p_worker.getId());
+                Worker ok_worker = workerService.findWorker(p_worker);
                 if (ok_worker != null) {
                     payment.setWorker(ok_worker);
                 } else {
                     model.addAttribute("link", "/payment/all");
-                    model.addAttribute("error_msg", "Incorrect worker: " + p_worker.getId());
+                    model.addAttribute("error_msg", "Incorrect worker: " + p_worker);
                     return "error";
                 }
             } catch (Exception e) {
                 model.addAttribute("link", "/payment/all");
-                model.addAttribute("error_msg", "Incorrect worker: " + p_worker.getId());
+                model.addAttribute("error_msg", "Incorrect worker: " + p_worker);
                 return "error";
             }
         }
@@ -106,14 +108,15 @@ public class PaymentController {
     @GetMapping("/update/{id}")
     public String updatePayment(@PathVariable(value = "id") long id, Model model) {
         Payment payment = paymentService.findPayment(id);
-
         model.addAttribute("payment", payment);
+        List<Worker> workers = workerService.findAllWorkers();
+        model.addAttribute("workers", workers);
         return "payment/update";
     }
 
     @PostMapping("/update")
     public String saveAfterUpdatePayment(@RequestParam(name = "p_id", required = false) Long p_id,
-                                         @RequestParam(name = "p_worker", required = false) Worker p_worker,
+                                         @RequestParam(name = "p_worker", required = false) int p_worker,
                                          @RequestParam(name = "p_type") String p_type,
                                          @RequestParam(name = "p_date") String p_date,
                                          @RequestParam(name = "p_amount") String p_amount,
@@ -131,19 +134,19 @@ public class PaymentController {
             }
         }
         // check worker
-        if (p_worker != null) {
+        if (p_worker > 0) {
             try {
-                Worker ok_worker = workerService.findWorker(p_worker.getId());
+                Worker ok_worker = workerService.findWorker(p_worker);
                 if (ok_worker != null) {
                     payment.setWorker(ok_worker);
                 } else {
                     model.addAttribute("link", "/payment/all");
-                    model.addAttribute("error_msg", "Incorrect worker: " + p_worker.getId());
+                    model.addAttribute("error_msg", "Incorrect worker: " + p_worker);
                     return "error";
                 }
             } catch (Exception e) {
                 model.addAttribute("link", "/payment/all");
-                model.addAttribute("error_msg", "Incorrect worker: " + p_worker.getId());
+                model.addAttribute("error_msg", "Incorrect worker: " + p_worker);
                 return "error";
             }
         }
