@@ -1,6 +1,8 @@
 package controllers;
 
+import entities.Payment;
 import entities.Project;
+import entities.Role;
 import entities.Worker;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
@@ -9,6 +11,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import services.PaymentService;
+import services.ProjectService;
 import services.WorkerService;
 import services.RoleService;
 
@@ -24,6 +28,8 @@ import java.util.List;
 public class WorkerController {
     WorkerService workerService = new WorkerService();
     RoleService roleService = new RoleService();
+    PaymentService paymentService = new PaymentService();
+    ProjectService projectService = new ProjectService();
 
     @GetMapping("/all")
     public String workerListPage(Model model) {
@@ -44,6 +50,22 @@ public class WorkerController {
         Worker worker = workerService.findWorker(id);
         workerService.dismissWorker(worker);
         return "redirect:/worker/all";
+    }
+
+    @GetMapping("/info/{id}")
+    public String workerInfoPage(@PathVariable(value = "id") long id, Model model) {
+        Worker worker = workerService.findWorker(id);
+        model.addAttribute("worker", worker);
+
+        List<Payment> payments = paymentService.findPaymentsByWorker(worker);
+        model.addAttribute("payments", payments);
+
+        List<Project> projects = projectService.findProjectsByWorker(roleService, worker);
+        model.addAttribute("projects", projects);
+
+        List<Role> roles = roleService.findRolesByWorker(worker);
+        model.addAttribute("roles", roles);
+        return "worker/info";
     }
 
     @GetMapping("/new")

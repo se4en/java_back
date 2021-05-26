@@ -73,7 +73,7 @@
             <td><span th:text="${payment.getDate_time()}"> </span></td>
             <td>
                 <span th:if="${payment.getWorker() != null}">
-                    <a th:href="@{/worker/update/{id}(id=${payment.getWorker().getId()})}" th:text="${payment.getWorker().getSername()}" class="btn btn-success"></a>
+                    <a th:href="@{/worker/info/{id}(id=${payment.getWorker().getId()})}" th:text="${payment.getWorker().getSername()}" class="btn btn-success"></a>
                 </span>
                 <span th:if="${payment.getWorker() == null}">
                     <a th:text="'No worker'"> </a>

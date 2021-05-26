@@ -75,7 +75,8 @@
             <td><span th:text="${worker.getSalary()}"> </span></td>
             <td><span th:text="${worker.getFirst_day()}"> </span></td>
             <td><span th:text="${worker.getLast_day()}"> </span>
-            </td><td> <a th:href="@{update/{id}(id=${worker.getId()})}" class="btn btn-primary">Update</a>
+            </td><td> <a th:href="@{info/{id}(id=${worker.getId()})}" class="btn btn-success">Info</a>
+            <a th:href="@{update/{id}(id=${worker.getId()})}" class="btn btn-primary">Update</a>
             <a th:href="@{delete/{id}(id=${worker.getId()})}" class="btn btn-danger">Delete</a>
             <span th:if="${worker.getLast_day() == null}">
                 <a th:href="@{dismiss/{id}(id=${worker.getId()})}" class="btn btn-success">Dismiss</a>

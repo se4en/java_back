@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
-    <title>Payments list</title>
+    <title>Workers list</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <meta charset="UTF-8"/>
@@ -45,46 +45,55 @@
 
 <div class="indent">
 
-    <a th:href = "'new'" class="btn btn-primary btn-sm mb-3"> Add paymnet </a>
+    <div id="workerInfo">
+        <p th:text="'Worker id: ' + ${worker.getId()}"></p>
+        <p th:text="'Worker sername: ' + ${worker.getSername()}"></p>
+        <p th:text="'Worker name: ' + ${worker.getName()}"></p>
+        <p th:text="'Worker patronymic: ' + ${worker.getPatronymic()}"></p>
+        <p th:text="'Worker phone: ' + ${worker.getPhone()}"></p>
+        <p th:text="'Worker email: ' + ${worker.getEmail()}"></p>
+        <p th:text="'Worker address: ' + ${worker.getAddress()}"></p>
+        <p th:text="'Worker first day: ' + ${worker.getFirst_day()}"></p>
+        <p th:text="'Worker last day: ' + ${worker.getLast_day()}"></p>
+        <p th:text="'Worker post: ' + ${worker.getPost()}"></p>
+        <p th:text="'Worker salary: ' + ${worker.getSalary()}"></p>
+    </div>
 
-    <br>
-
-    <--form th:action="'/project/all'" method="get">
-        <--input id="txt-search" type="text" name="keyword">
-        <--button type="submit"> Search</--button>
-    </--form>
-
-    <table class="table table-bordered table-warning">
-        <thead class="thead-dark">
+    <table id="workerRolesPage">
+        <thead>
         <tr>
-            <th scope="col"> Type</th>
-            <th scope="col"> Date</th>
-            <th scope="col"> Worker</th>
-            <th scope="col"> Amount</th>
-            <th> Actions </th>
+            <th> Role</th>
+            <th> Description</th>
+            <th> Project</th>
+            <th> Start date</th>
+            <th> End date</th>
         </tr>
         </thead>
         <tbody>
-        <tr th:if="${payments.empty}">
-            <td colspan="8"> No available payments</td>
+        <tr th:if="${roles.empty}">
+            <td colspan="6"> No roles here</td>
         </tr>
-        <tr th:each="payment : ${payments}">
-            <td><span th:text="${payment.getType()}"> </span></td>
-            <td><span th:text="${payment.getDate_time()}"> </span></td>
+        <tr th:each="role : ${roles}">
+
+            <td><span th:text="${role.getRole()}"> </span></td>
+
+            <td><span th:text="${role.getDescription()}"> </span></td>
+
             <td>
-                <span th:if="${payment.getWorker() != null}">
-                    <a th:href="@{/worker/info/{id}(id=${payment.getWorker().getId()})}" th:text="${payment.getWorker().getSername()}" class="btn btn-success"></a>
+                <span th:if="${role.getProject() != null}">
+                    <a th:href="@{/project/update/{id}(id=${role.getProject().getId()})}" th:text="${role.getProject().getTitle()}" class="btn btn-success"></a>
                 </span>
-                <span th:if="${payment.getWorker() == null}">
-                    <a th:text="'No worker'"> </a>
+                <span th:if="${role.getProject() == null}">
+                    <a th:text="'No project'"> </a>
                 </span>
             </td>
-            <td><span th:text="${payment.getAmount()}"> </span></td>
-            <td> <a th:href="@{update/{id}(id=${payment.getId()})}" class="btn btn-primary">Update</a>
-            <a th:href="@{delete/{id}(id=${payment.getId()})}" class="btn btn-danger">Delete</a>
-        </td>
-        </tr>
 
+            <td><span th:text="${role.getStart_date()}"> </span></td>
+
+            <td><span th:text="${role.getEnd_date()}"> </span></td>
+
+
+        </tr>
         </tbody>
     </table>
 </div>
