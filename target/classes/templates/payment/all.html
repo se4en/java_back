@@ -45,7 +45,7 @@
 
 <div class="indent">
 
-    <a th:href = "'new'" class="btn btn-primary btn-sm mb-3"> Add paymnet </a>
+    <a name = "add_payment_button" th:href = "'new'" class="btn btn-primary btn-sm mb-3"> Add paymnet </a>
 
     <br>
 
@@ -68,20 +68,20 @@
         <tr th:if="${payments.empty}">
             <td colspan="8"> No available payments</td>
         </tr>
-        <tr th:each="payment : ${payments}">
+        <tr name="one_payment" th:each="payment : ${payments}">
             <td><span th:text="${payment.getType()}"> </span></td>
             <td><span th:text="${payment.getDate_time()}"> </span></td>
             <td>
                 <span th:if="${payment.getWorker() != null}">
-                    <a th:href="@{/worker/info/{id}(id=${payment.getWorker().getId()})}" th:text="${payment.getWorker().getSername()}" class="btn btn-success"></a>
+                    <a name="worker_button" th:href="@{/worker/info/{id}(id=${payment.getWorker().getId()})}" th:text="${payment.getWorker().getSername()}" class="btn btn-success"></a>
                 </span>
                 <span th:if="${payment.getWorker() == null}">
                     <a th:text="'No worker'"> </a>
                 </span>
             </td>
             <td><span th:text="${payment.getAmount()}"> </span></td>
-            <td> <a th:href="@{update/{id}(id=${payment.getId()})}" class="btn btn-primary">Update</a>
-            <a th:href="@{delete/{id}(id=${payment.getId()})}" class="btn btn-danger">Delete</a>
+            <td> <a name = "update_button" th:href="@{update/{id}(id=${payment.getId()})}" class="btn btn-primary">Update</a>
+            <a name = "delete_button" th:href="@{delete/{id}(id=${payment.getId()})}" class="btn btn-danger">Delete</a>
         </td>
         </tr>
 
