@@ -32,7 +32,7 @@
                 <a class="nav-link" id="all_workers_link" href="/worker/all">Workers</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" id="all_clients_link" href="/project/all">Projects</a>
+                <a class="nav-link" id="all_projects_link" href="/project/all">Projects</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" id="all_payments_link" href="/payment/all">Payments</a>
@@ -45,7 +45,7 @@
 
 <div class="indent">
 
-    <a th:href = "'new'" class="btn btn-primary btn-sm mb-3"> Add project </a>
+    <a name="add_project_button" th:href = "'new'" class="btn btn-primary btn-sm mb-3"> Add project </a>
 
     <br>
 
@@ -69,16 +69,16 @@
         <tr th:if="${projects.empty}">
             <td colspan="8"> No available projects</td>
         </tr>
-        <tr th:each="project : ${projects}">
+        <tr name="one_project" th:each="project : ${projects}">
             <td><span th:text="${project.getTitle()}"> </span></td>
             <td><span th:text="${project.getStatus()}"> </span></td>
             <td><span th:text="${project.getStart_date()}"> </span></td>
             <td><span th:text="${project.getEnd_date()}"> </span></td>
             <td><span th:text="${project.getDescription()}"> </span>
-            </td><td> <a th:href="@{update/{id}(id=${project.getId()})}" class="btn btn-primary">Update</a>
-            <a th:href="@{delete/{id}(id=${project.getId()})}" class="btn btn-danger">Delete</a>
+            </td><td> <a name="update_button" th:href="@{update/{id}(id=${project.getId()})}" class="btn btn-primary">Update</a>
+            <a name="delete_button" th:href="@{delete/{id}(id=${project.getId()})}" class="btn btn-danger">Delete</a>
             <span th:if="${project.getEnd_date() == null}">
-                <a th:href="@{close/{id}(id=${project.getId()})}" class="btn btn-success">Close</a>
+                <a name="close_button" th:href="@{close/{id}(id=${project.getId()})}" class="btn btn-success">Close</a>
             </span>
         </td>
         </tr>
