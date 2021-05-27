@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="ISO-8859-1">
-    <title>Employee Management System</title>
+    <title>New role</title>
     <link rel="stylesheet"
           href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
           integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
@@ -43,7 +43,7 @@
         <input type="text" id="r_end_date" name="r_end_date" placeholder="YYYY-MM-DD"
                required th:value="${role.getEnd_date()}"><br><br>
 
-        <button type="submit" class="btn btn-info col-2"> Save role</button>
+        <button name="submit_button" type="submit" class="btn btn-info col-2"> Save role</button>
     </form>
 
     <hr>

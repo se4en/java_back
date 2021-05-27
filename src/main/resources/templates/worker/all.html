@@ -45,7 +45,7 @@
 
 <div class="indent">
 
-    <a th:href = "'new'" class="btn btn-primary btn-sm mb-3"> Add worker </a>
+    <a name="add_worker_button" th:href = "'new'" class="btn btn-primary btn-sm mb-3"> Add worker </a>
 
     <br>
 
@@ -69,18 +69,18 @@
         <tr th:if="${workers.empty}">
             <td colspan="8"> No available workers</td>
         </tr>
-        <tr th:each="worker : ${workers}">
+        <tr name="one_worker" th:each="worker : ${workers}">
             <td><span th:text="${worker.getSername()}"> </span></td>
             <td><span th:text="${worker.getName()}"> </span></td>
             <td><span th:text="${worker.getSalary()}"> </span></td>
             <td><span th:text="${worker.getFirst_day()}"> </span></td>
             <td><span th:text="${worker.getLast_day()}"> </span>
-            </td><td> <a th:href="@{info/{id}(id=${worker.getId()})}" class="btn btn-success">Info</a>
-            <a th:href="@{update/{id}(id=${worker.getId()})}" class="btn btn-primary">Update</a>
-            <a th:href="@{delete/{id}(id=${worker.getId()})}" class="btn btn-danger">Delete</a>
-            <a th:href="@{role/{id}(id=${worker.getId()})}" class="btn btn-success">New role</a>
+            </td><td> <a name="info_button" th:href="@{info/{id}(id=${worker.getId()})}" class="btn btn-success">Info</a>
+            <a name="update_button" th:href="@{update/{id}(id=${worker.getId()})}" class="btn btn-primary">Update</a>
+            <a name="delete_button" th:href="@{delete/{id}(id=${worker.getId()})}" class="btn btn-danger">Delete</a>
+            <a name="role_button" th:href="@{role/{id}(id=${worker.getId()})}" class="btn btn-success">New role</a>
             <span th:if="${worker.getLast_day() == null}">
-                <a th:href="@{dismiss/{id}(id=${worker.getId()})}" class="btn btn-primary">Dismiss</a>
+                <a name="dismiss_button" th:href="@{dismiss/{id}(id=${worker.getId()})}" class="btn btn-primary">Dismiss</a>
             </span>
         </td>
         </tr>

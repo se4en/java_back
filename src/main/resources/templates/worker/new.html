@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="ISO-8859-1">
-    <title>Employee Management System</title>
+    <title>New worker</title>
     <link rel="stylesheet"
           href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
           integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
@@ -60,7 +60,7 @@
         <input type="text" id="w_salary" name="w_salary" placeholder="Worker salary"
                required th:value="${worker.getSalary()}"><br><br>
 
-        <button type="submit" class="btn btn-info col-2"> Save worker</button>
+        <button name="submit_button" type="submit" class="btn btn-info col-2"> Save worker</button>
     </form>
 
     <hr>
